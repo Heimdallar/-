@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm commitlint --edit $1 --help-url='https://poizon.feishu.cn/wiki/wikcnQedO8MBcBwxR2PsNH3D4FK'
+

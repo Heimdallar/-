@@ -1,0 +1,31 @@
+{
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@@/*": [
+        "src/.umi/*"
+      ]
+    },
+    "target": "esnext",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+  },
+  "include": [
+    ".umirc.ts",
+    "config/*",
+    "mock/**/*",
+    "src/**/*",
+    "config/**/*",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "src/.umi*/**/*"
+  ]
+}

@@ -1,0 +1,127 @@
+// @import '~poizon-design/dist/poizon-design.less';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+// 页面布局 // TODO 应该迁移到插件中？？？
+.@{ant-prefix}-pro-page-container {
+
+  .@{ant-prefix}-pro-grid-content {
+    padding-top: 24px;
+  }
+
+  >.@{ant-prefix}-pro-page-container-warp {
+    background-color: transparent;
+
+    >.@{ant-prefix}-page-header {
+      padding-top: 0;
+      background-color: transparent;
+
+      >.@{ant-prefix}-page-header-heading {
+        padding: 7px 0;
+
+        .@{ant-prefix}-page-header-heading-title {
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+
+      >.@{ant-prefix}-page-header-footer {
+        margin-top: 0;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0 0 0, .05);
+
+
+        >.@{ant-prefix}-tabs {
+          padding: 0 24px;
+
+          .@{ant-prefix}-tabs-nav {
+            .@{ant-prefix}-tabs-nav-wrap {
+              .@{ant-prefix}-tabs-nav-list {
+                .@{ant-prefix}-tabs-tab {
+                  margin-right: 40px;
+                  margin-left: 0;
+                  padding: 12px 0;
+
+                  .@{ant-prefix}-tabs-tab-btn {
+                    font-size: 14px;
+                  }
+
+                  &.@{ant-prefix}-tabs-tab-active {
+                    .@{ant-prefix}-tabs-tab-btn {
+                      font-weight: 500;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 表格 // TODO 应该迁移到插件中？？？
+.@{ant-prefix}-pro-table {
+  >.@{ant-prefix}-pro-card {
+    box-shadow: 0 2px 4px rgba(0 0 0, .05);
+  }
+
+  // 搜索区域
+  .@{ant-prefix}-pro-table-search {
+    margin-bottom: 24px;
+  }
+
+  // 表格上方操作区域
+  .@{ant-prefix}-pro-table-list-toolbar-container {
+    padding: 12px 0;
+  }
+
+  .@{ant-prefix}-table-row-expand-icon-collapsed {
+    // border:none;
+
+    // &::after, &::before {
+    //   content: "\e6e1";
+    // }
+  }
+
+  // 表格
+  .@{ant-prefix}-table {
+    &.@{ant-prefix}-table-middle {
+
+      .@{ant-prefix}-table-thead>tr>th,
+      .@{ant-prefix}-table-tbody>tr>td,
+      tfoot>tr>th,
+      tfoot>tr>td {
+        padding-right: 24px;
+      }
+    }
+  }
+
+  // 分页
+  .@{ant-prefix}-pagination {
+    &.@{ant-prefix}-table-pagination-right {
+      justify-content: flex-start;
+
+      .@{ant-prefix}-pagination-total-text {
+        flex: 1;
+      }
+
+      .@{ant-prefix}-pagination-prev,
+      .@{ant-prefix}-pagination-next,
+      .@{ant-prefix}-pagination-item {
+        margin-left: 8px;
+        border: 1px solid #dddfe7;
+        border-radius: 2px;
+
+        &.@{ant-prefix}-pagination-item-active {
+          border-color: #01c2c3;
+        }
+      }
+    }
+  }
+}

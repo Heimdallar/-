@@ -1,0 +1,21 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+/.vscode
+
+/node_modules
+*.log
+
+/dist
+
+.DS_Store
+
+/src/.umi
+/src/.umi-production
+/src/.umi-test
+/.env.local
+
+.mockStatic
+
+.eslintcache
+
+.tempConfig
