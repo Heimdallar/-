@@ -15,13 +15,15 @@ import styles from './index.less';
 
 const { TabPane } = Tabs;
 
+const pEnv = process.env || {};
+
 DuUploaderInstance.setConfig({
-  appId: "appId",
+  appId: 'appId',
   gateway: 'auth',
-  backstageCode: 'poizon-design-pro',
+  backstageCode: pEnv.BACK_STAGE_CODE || '',
   monitorEnv: 't1', // 当前环境
-  monitorName: 'poizon-design-pro', // 应用名
-  monitorUser: { id: "userId", userName: "userName" }, // 用户信息
+  monitorName: pEnv.BACK_STAGE_CODE || '', // 应用名
+  monitorUser: { id: 'userId', userName: 'userName' }, // 用户信息
 });
 
 type FormRefProps = ComponentProps<typeof ProForm>['formRef'];

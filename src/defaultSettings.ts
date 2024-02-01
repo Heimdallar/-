@@ -34,6 +34,7 @@ const projectVersion = packageJSON.version;
 
 const isDev = pEnv.NODE_ENV === 'development';
 const backstageCode = pEnv.BACK_STAGE_CODE || '';
+
 const envKey = `${backstageCode}_ENV`;
 const ENV = localStorage.getItem(envKey) || 't1'; // 开发环境变量
 

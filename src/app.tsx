@@ -1,9 +1,9 @@
+/* eslint-disable import/no-unused-modules */
 /*
  * @Author: maoyuanjun maoyuanjun@shizhuang-inc.com
  * @Date: 2023-10-27 17:14:42
  * @LastEditors: maoyuanjun maoyuanjun@shizhuang-inc.com
  * @LastEditTime: 2023-10-27 19:57:32
- * @FilePath: /frontend-monorepo/apps/customer/poizon-design-pro/src/app.tsx
  * @Description: 首页
  */
 import React, { ReactNode, useEffect } from 'react';
@@ -63,7 +63,7 @@ const useAppInitialHooks = () => {
 
 // # 用于做埋点统计/设置标题，此处引入了效率工程的 SDK
 // @ts-ignore
-export function onRouteChange({ location }) {
+export function onRouteChange() {
   // 获取当前 route
   // const route = matchRoutes(clientRoutes, location.pathname)?.pop()?.route;
 }

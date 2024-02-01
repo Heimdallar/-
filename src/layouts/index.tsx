@@ -27,15 +27,15 @@ const Main: FunctionComponent = () => {
   return (
     <ScopeAuthStore request={scopeRequest}>
       <DuLayout
-        title="POIZON Design Pro"
+        title="青训营训练项目"
         rightContentRender={<HeaderRightContent />}
         menuRender={<Menu items={mock} />}
         menuType={MenuType.PRO}
-        logo="https://cdn.poizon.com/node-common/3947b668818be48e13c47b6468f75293.svg"
+        logo="https://cdn.dewu.com/node-common/3947b668818be48e13c47b6468f75293.svg"
       >
         <PageContainer
           header={{
-            title: tabTitle || 'Pro',
+            title: false,
             breadcrumb: {},
           }}
         >

@@ -4,4 +4,4 @@
 MOCK_ENABLE=1
 
 # 前端平台mock的空间名
-MOCK_SPACECODE=poizon-design-pro
+MOCK_SPACECODE=youth-camp-fe-app

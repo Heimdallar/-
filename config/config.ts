@@ -92,16 +92,9 @@ export default defineConfig({
   },
   request: {},
   plugins: ['@umijs/plugin-open-browser', '@umijs/plugin-pro-cacher', getUmiPlugin(), path.join(__dirname, '../generator/page')],
-  proCacher: {
-    buildDependencies: {
-      config: [path.join(__dirname, 'config.ts')],
-    },
-    enableBabelDevCache: true,
-  },
   chainWebpack(config) {
     // 这里引入 webpack 插件
-    config.plugin('esm').use(new ESMWebpackPlugin());
+    config.plugin('esm').use(new ESMWebpackPlugin({}));
   },
-  open: {},
-  // proCdn: { gitPath: '../../../.git' }
+  open: {}
 });

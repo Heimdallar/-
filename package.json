@@ -1,5 +1,5 @@
 {
-  "name": "poizon-design-pro",
+  "name": "youth-camp-fe-app",
   "description": "开箱即用的中台前端/设计解决方案",
   "version": "1.2.0",
   "author": "得物前端团队",
@@ -27,10 +27,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.shizhuang-inc.com/duapp/web/scaffold/poizon-design-pro"
+    "url": "https://pkg.poizon.com/youthcamp/fe-app/-/tree/feature-init-app"
   },
   "bugs": {
-    "url": "https://gitlab.shizhuang-inc.com/duapp/web/scaffold/poizon-design-pro/-/issues"
+    "url": "https://pkg.poizon.com/youthcamp/fe-app/-/tree/feature-init-app/-/issues"
   },
   "resolutions": {
     "@types/react": "^18",
