@@ -22,6 +22,17 @@ pnpm install
 npm start
 ```
 
+代理绑定
+```shell
+127.0.0.1 dev.shizhuang-inc.net
+```
+
+打开地址
+```shell
+http://dev.shizhuang-inc.net:8000/
+```
+
+
 # 组件参考
 
 `Poizon Design Pro` 开箱即用的中台前端/设计解决方案，版本 `1.2.0` 文档已迁移至 [https://pd.shizhuang-inc.com/](https://pd.shizhuang-inc.com/)

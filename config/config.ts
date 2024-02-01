@@ -23,7 +23,7 @@ export default defineConfig({
   crossorigin: {},
   lessLoader: {
     modifyVars: {
-      '@ant-prefix': 'pd',
+      '@ant-prefix': 'ant',
     },
   },
   // 用于提供给代码中可用的变量
