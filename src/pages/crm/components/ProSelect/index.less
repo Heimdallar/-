@@ -1,0 +1,34 @@
+.proSelectDropdown {
+  @keyframes scroll-option-wrap-animation {
+    0% {
+      transform: translateX(0);
+    }
+
+    10% {
+      //   transform: translateX(50%);
+      transform: translateX(300px);
+    }
+
+    20%,
+    100% {
+      //   transform: translateX(100%);
+      transform: translateX(600px);
+    }
+  }
+  @keyframes scroll-option-content-animation {
+    0% {
+      transform: translateX(0);
+    }
+
+    10% {
+      transform: translateX(-300px);
+      //   transform: translateX(-50%);
+    }
+
+    20%,
+    100% {
+      transform: translateX(-600px);
+      //   transform: translateX(-100%);
+    }
+  }
+}

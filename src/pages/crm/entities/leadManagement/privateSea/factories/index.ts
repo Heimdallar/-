@@ -1,0 +1,3 @@
+import buildMakePrivateSeaGetFeedbackTalkFails from './fetchGetFeedbackTalkFails'
+
+export const makePrivateSeaGetFeedbackTalkFails = buildMakePrivateSeaGetFeedbackTalkFails()

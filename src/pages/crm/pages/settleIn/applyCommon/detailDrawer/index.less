@@ -1,0 +1,134 @@
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &_title {
+    color: '#14151A';
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  &_status {
+    margin-left: 8px;
+  }
+}
+
+.remark {
+  margin-bottom: 24px;
+  color: #14151a;
+  font-weight: 500;
+  font-size: 12px;
+
+  & > .key {
+    margin-top: 24px;
+  }
+}
+
+.basic {
+  margin-top: 8px;
+}
+
+.key {
+  margin-top: 8px;
+  color: #7f7f8e;
+  font-size: 14px;
+}
+
+.value {
+  margin-top: 8px;
+  color: #2b2c3c;
+  font-size: 14px;
+}
+
+.emphasize {
+  span {
+    color: #fc9d00;
+    font-weight: 600;
+  }
+}
+
+.spinning {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.blockTitle {
+  margin-bottom: 12px;
+  color: #14151a;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.saleChannel,
+.brandPopularity {
+  & > .blockTitle {
+    margin-bottom: 18px;
+  }
+}
+
+.brandMsg,
+.brandData,
+.saleChannel,
+.brandPopularity {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f1f1f5;
+}
+
+.brandPopularity {
+  margin-bottom: 0;
+  border: none;
+}
+
+.other {
+  border-top: 1px solid #f1f1f5;
+}
+
+.drawerFooter {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 56px;
+  padding-left: 24px;
+  background-color: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.scrollContainer {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  overflow: auto;
+}
+
+.textNoWrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mainColor {
+  &:hover {
+    color: #01c2c3;
+  }
+}
+
+.image-wrapper {
+  .ant-btn-link {
+    padding-left: 0;
+  }
+
+  &.logo-img .ant-image-img {
+    display: none;
+  }
+
+  .preview-group-item {
+    display: inline;
+  }
+}

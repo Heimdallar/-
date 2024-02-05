@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+
+  .item {
+    height: 40px;
+    padding: 8px 12px;
+    line-height: 24px;
+    text-align: center;
+    background: #f8f8fa;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .expandAndCollapse {
+    color: #01c2c3;
+    cursor: pointer;
+  }
+
+  .itemBgc {
+    color: #01c2c3 !important;
+    font-weight: 600;
+    background-image: url('https://cdn.poizon.com/node-common/2a0230ac-268d-c4d1-b15d-e0fc6a5986bd.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    border: 1px solid #01c2c3;
+  }
+
+  :global {
+    *[class*='ant-'].ant-card-body {
+      width: 100% !important;
+    }
+
+    *[class*='ant-'].ant-divider-horizontal {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+.container2 {
+  :global {
+    *[class*='ant-'].ant-divider-horizontal {
+      margin-top: 0 !important;
+    }
+  }
+}
