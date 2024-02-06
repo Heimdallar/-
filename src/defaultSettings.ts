@@ -32,9 +32,10 @@ const getBuildEnv = (): string => {
 /** 应用版本号 */
 const projectVersion = packageJSON.version;
 
+console.log('pEnv',pEnv);
 const isDev = pEnv.NODE_ENV === 'development';
 const backstageCode = pEnv.BACK_STAGE_CODE || '';
-console.log('backstageCode', backstageCode);
+
 const PREFIX = '/api/v1/h5'; // 默认网关
 
 const envKey = `${backstageCode}_ENV`;
@@ -73,7 +74,5 @@ export const config = {
   tokenKey: isDev ? `${ENV}_accessToken` : 'accessToken',
 
   /** 接口请求 Prefix */
-  proxyFix: isDev ? `/${ENV + PREFIX}` : PREFIX,
-
-  projectName: '练习系统',
+  proxyFix: isDev ? `/${ENV + PREFIX}` : PREFIX
 };

@@ -14,12 +14,14 @@ import { useMenus, useUserInfo } from '@/hooks';
 import { NotFound } from '@/pages/NotFound';
 import { getToken } from '@/utils/auth';
 
-const { backstageCode } = config;
+const { backstageCode, proxyFix } = config;
 
 /**
  * Axios: https://axios-http.com/
  */
 export const request = {
+  baseURL: proxyFix,
+
   dataField: 'data',
 
   // 请求拦截器
