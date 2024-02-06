@@ -3,6 +3,8 @@ import duTrack from '@du/track';
 import { config } from '@/defaultSettings';
 import type { PromiseType } from './types';
 
+const { proxyFix } = config;
+
 // 接口请求的相关定义和方法
 
 /** 接口空参数定义 */
@@ -89,34 +91,37 @@ export const requestApi = <T>(
     params: params as URLSearchParams,
     successText: successMsg,
     headers,
-  }).then(({ data }) => {
-    if (duTrack && typeof duTrack !== 'undefined') {
-      duTrack.injectData(url, data)
-    }
+    prefix: proxyFix,
+  })
+    .then(({ data }) => {
+      if (duTrack && typeof duTrack !== 'undefined') {
+        duTrack.injectData(url, data);
+      }
 
-    return data
-  }).catch((error) => error);
+      return data;
+    })
+    .catch((error) => error);
 };
 
 interface optionsProps {
-    method?: string,
-    params: URLSearchParams,
-    successText?: string,
-    headers?:Headers,
+  method?: string;
+  params: URLSearchParams;
+  successText?: string;
+  headers?: Headers;
 }
 
-const newRequestApi = <T>(
-  url: string,
-  options: optionsProps
-) => {
+const newRequestApi = <T>(url: string, options: optionsProps) => {
   return UmiRequest.request<{ data: T }>({
     url,
-    ...options
-  }).then((res) => res).catch((error) => error);
+    prefix: proxyFix,
+    ...options,
+  })
+    .then((res) => res)
+    .catch((error) => error);
 };
 
 const request = (url: string, options: optionsProps) => {
-  return newRequestApi(url, options)
-}
+  return newRequestApi(url, options);
+};
 
-export default request
+export default request;
