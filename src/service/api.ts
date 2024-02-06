@@ -1,5 +1,6 @@
 import { request } from '@umijs/max';
-import { BaseRequest } from '@/utils/request';
+import { IBrandListParams } from '@/entities/interface';
+import { BaseRequest, BaseResponse, requestApi } from '@/utils/request';
 
 /** 获取用户信息 */
 export const getUserInfoInterface = (params?: BaseRequest) =>
@@ -34,3 +35,7 @@ export const getMenuAuthListInterface = (params: { menuId: number; backstageId: 
       elementUrl: string;
     }[]
   >('/api/v1/h5/luna/element/list', { params });
+
+  export const getBrandByName = (queryParams: IBrandListParams) => {
+    return requestApi('/commodity-admin/admin/brand/page-list', { ...queryParams }, 'POST');
+  };

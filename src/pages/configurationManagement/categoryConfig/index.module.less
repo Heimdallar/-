@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    height: calc(100vh - 134px);
+    background-color: #fff;
+
+    .left {
+        width: 400px;
+        height: calc(100vh - 134px);
+        padding: 24px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .right {
+        flex: 1;
+        height: calc(100vh - 134px);
+        padding: 24px;
+        overflow-y: scroll;
+        border-left: 1px solid #e8e8e8;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+}

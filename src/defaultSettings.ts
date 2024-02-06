@@ -7,7 +7,7 @@ const pEnv = process.env || {};
 type RuntimeEnvTypes = 'dev' | 'd1' | 't0' | 't1' | 't2' | 'pre' | 'prod';
 
 /** 返回业务环境 */
-const getRuntimeEnv = (): RuntimeEnvTypes => {
+export const getRuntimeEnv = (): RuntimeEnvTypes => {
   const hostname = window.location.hostname.toLowerCase();
   const port = Number(window.location.port);
 

@@ -1,0 +1,27 @@
+.editorFooter {
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  & > .buttonGroup {
+    position: relative;
+    top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 72px;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+
+    & > button {
+      height: auto;
+      margin-right: 24px;
+      padding: 7px 16px;
+
+      &.resetHover:hover {
+        background-color: #fff;
+      }
+    }
+  }
+}
