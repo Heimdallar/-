@@ -1,6 +1,7 @@
 import duTrack from '@du/track';
 import { getUserInfoInterface } from '@/service/api';
 import { getEnv } from './common';
+const pEnv = process.env || {};
 
 export const initMfDutrack = (userInfo: Partial<InterfaceReply<typeof getUserInfoInterface>>) => {
   // 登录态：获取用户信息
@@ -11,7 +12,8 @@ export const initMfDutrack = (userInfo: Partial<InterfaceReply<typeof getUserInf
   try {
     if (!duTrack || typeof duTrack === undefined) return;
     duTrack.init({
-      backstageCode: 'crm',
+      // backstageCode: 'crm',
+      backstageCode: pEnv.BACK_STAGE_CODE || '',
       userId: id ?? seesionId ?? '',
       userName: username,
       excludeEle: '.ant-pro-sider-layout-mix, .ant-pro-fixed-header-action',
@@ -25,7 +27,8 @@ export const initMfDutrack = (userInfo: Partial<InterfaceReply<typeof getUserInf
     console.error('dutrack init', error);
     // 未登录状态：初始化用户信息为-1
     duTrack.init({
-      backstageCode: 'crm',
+      // backstageCode: 'crm',
+      backstageCode: pEnv.BACK_STAGE_CODE || '',
       env: !isDevelopmentEnv ? 'production' : 'development',
       projectId: 9,
       excludeEle: '.ant-pro-sider-layout-mix, .ant-pro-fixed-header-action',

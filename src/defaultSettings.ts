@@ -34,9 +34,11 @@ const projectVersion = packageJSON.version;
 
 const isDev = pEnv.NODE_ENV === 'development';
 const backstageCode = pEnv.BACK_STAGE_CODE || '';
+console.log('backstageCode', backstageCode);
+const PREFIX = '/api/v1/h5'; // 默认网关
 
 const envKey = `${backstageCode}_ENV`;
-const ENV = localStorage.getItem(envKey) || 't1'; // 开发环境变量
+export const ENV = localStorage.getItem(envKey) || 't1'; // 开发环境变量
 
 /** 项目配置 */
 export const config = {
@@ -71,5 +73,7 @@ export const config = {
   tokenKey: isDev ? `${ENV}_accessToken` : 'accessToken',
 
   /** 接口请求 Prefix */
-  proxyFix: '',
+  proxyFix: isDev ? `/${ENV + PREFIX}` : PREFIX,
+
+  projectName: '练习系统',
 };

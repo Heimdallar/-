@@ -24,7 +24,7 @@
     "src/**/*",
     "config/**/*",
     "typings.d.ts"
-  ],
+, "public/crm"  ],
   "exclude": [
     "src/.umi*/**/*"
   ]
