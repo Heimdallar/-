@@ -1,0 +1,62 @@
+.attractinvestment {
+  padding: 46px 120px 0;
+  background-color: #f8f8fa;
+  min-height: calc(100vh - 95px);
+  .attractinvestmentBox {
+    width: 1200px;
+    margin: 0 auto;
+  background-color: #f8f8fa;
+
+  }
+  .flex {
+    display: flex;
+    .time {
+      margin-right: 16px;
+      color: var(--ni-22-b-2-c-3-c, #2b2c3c);
+      text-align: center;
+      font-size: 24px;
+      font-family: Helvetica Neue;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      white-space: nowrap;
+    }
+  }
+  .box {
+    display: inline-block;
+    :global {
+      .ant-timeline-item:before {
+        content: '';
+        position: absolute;
+        top: 12px; /* 调整线条垂直位置 */
+        left: 5px; /* 调整线条水平位置 */
+        width: 1px; /* 设置线条宽度 */
+        height: calc(100% + -10px); /* 增加线条长度，使其超过Timeline.Item的高度 */
+        background: var(--p-101-c-2-c-3, #01c2c3);
+        z-index: 999999; /* 将线条置于Timeline.Item之后 */
+      }
+    }
+  }
+  :global {
+    .ant-timeline-item-content {
+      margin: 0 0 0 16px !important;
+    }
+    .ant-timeline {
+      width: 1200px;
+    }
+    .myTimelineItem:before {
+      content: '';
+      position: absolute;
+      top: 12px; /* 调整线条垂直位置 */
+      left: 5px; /* 调整线条水平位置 */
+      width: 1px; /* 设置线条宽度 */
+      height: calc(100% + -10px); /* 增加线条长度，使其超过Timeline.Item的高度 */
+      background: var(--p-101-c-2-c-3, #01c2c3);
+      z-index: 999999; /* 将线条置于Timeline.Item之后 */
+      .ant-timeline-item-tail {
+        border-left: 1pxl solid #01c2c3;
+      }
+    }
+  }
+}
+

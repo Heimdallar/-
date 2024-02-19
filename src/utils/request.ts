@@ -130,6 +130,7 @@ const newRequestApi = <T>(url: string, options: optionsProps) => {
 };
 
 const request = (url: string, options: optionsProps) => {
+  options['params'] = {...(options['params'] || {}), noSign:true}
   return newRequestApi(url, options);
 };
 
