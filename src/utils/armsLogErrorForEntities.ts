@@ -50,7 +50,7 @@ const validEntitiesDataAndLogError = <T>({path, configs, data}: {
   }
 
   // @ts-ignore
-  if (!(window?.DUOTEL instanceof Object) && !(window?.DUOTEL.send instanceof Object)) {
+  if (!(window?.DUOTEL instanceof Object) && !(window?.DUOTEL?.send instanceof Object)) {
     return
   }
 
@@ -90,7 +90,7 @@ const validEntitiesDataAndLogError = <T>({path, configs, data}: {
         }
       })
     }
-  } catch(error) {    
+  } catch(error) {
   }
 }
 
