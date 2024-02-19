@@ -59,7 +59,7 @@ export default defineConfig({
   //   exclude: [/^@monorepo\/.*/],
   // },
   proxy: {
-    '/api': {
+    't1/api/v1/h5/luna': {
       target: 'https://t1-auth.shizhuang-inc.net',
       changeOrigin: true,
       onProxyRes: (proxyRes, req) => {
@@ -67,7 +67,7 @@ export default defineConfig({
         proxyRes.headers['x-real-url'] = `${protocol}${port ? `:${port}` : ''}//${host}${req.url}`;
       },
     },
-    ...proxyList
+    ...proxyList,
   },
   title: pEnv.TITLE,
   presets: ['@umijs/preset-pro'],

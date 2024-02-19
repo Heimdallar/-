@@ -90,7 +90,11 @@ export const requestApi = <T>(
     method,
     params: params as URLSearchParams,
     successText: successMsg,
-    headers,
+    // @ts-ignore
+    headers: {
+      ...headers,
+      backstageCode: 'crm',
+    },
     prefix: proxyFix,
   })
     .then(({ data }) => {
@@ -114,6 +118,11 @@ const newRequestApi = <T>(url: string, options: optionsProps) => {
   return UmiRequest.request<{ data: T }>({
     url,
     prefix: proxyFix,
+    // @ts-ignore
+    headers: {
+      backstageCode: 'crm',
+      ...options?.headers,
+    },
     ...options,
   })
     .then((res) => res)
