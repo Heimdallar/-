@@ -27,7 +27,7 @@ const buildMakeOrgSelectOrgUser = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/user/org/selectOrgUser',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/user/org/selectOrgUser',
       configs: [
         {
           key: 'orgId',

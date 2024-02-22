@@ -79,7 +79,7 @@ export const fetchIsBDAdmin = async (
       interfaceList.some(
         (item: any) =>
           item.elementCode ===
-            '/api/v1/h5/merchant-customer/merchant/customer/brand/apply/reportSet' && item.checked,
+            '/api/v1/h5/youthcamp-mer-customer/merchant/customer/brand/apply/reportSet' && item.checked,
       )
     ) {
       setIsBDAdmin(true);

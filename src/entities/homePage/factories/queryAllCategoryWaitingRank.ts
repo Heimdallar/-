@@ -19,7 +19,7 @@ const makeRankData = (record: RankData) => {
   }
 
   validEntitiesDataAndLogError({
-    path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
+    path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
     configs: [
       {
         key: 'waitClaimAmount',
@@ -98,7 +98,7 @@ const buildMakeByAllCategoryQueryWaitingRank = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
       configs: [
         {
           key: 'datas',

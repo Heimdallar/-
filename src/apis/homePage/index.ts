@@ -11,7 +11,7 @@ import type { StatisticIndexReq } from '@/entities/homePage/interface/queryLeads
 import request from '@/utils/request';
 
 export const fetchStatisticIndexApi = (data: StatisticIndexReq) => {
-  return request('/merchant-customer/merchant/customer/leads/statistic/index', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/statistic/index', {
     method: 'post',
     data,
   });
@@ -19,7 +19,7 @@ export const fetchStatisticIndexApi = (data: StatisticIndexReq) => {
 
 export const fetchByAllCategoryQueryWaitingRankApi = (data: ByAllCategoryQueryWaitingRankReq) => {
   return request(
-    '/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
+    '/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryWaitingRank',
     {
       method: 'post',
       data,
@@ -28,7 +28,7 @@ export const fetchByAllCategoryQueryWaitingRankApi = (data: ByAllCategoryQueryWa
 };
 
 export const fetchByAllCategoryGetRateApi = (data: ByAllCategoryGetRateReq) => {
-  return request('/merchant-customer/merchant/customer/leads/statistic/byAllCategory/getRate', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/getRate', {
     method: 'post',
     data,
   });
@@ -38,7 +38,7 @@ export const fetchByAllCategoryQueryAchievedRankByRateApi = (
   data: ByAllCategoryQueryAchievedRankByRateReq,
 ) => {
   return request(
-    '/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByRate',
+    '/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByRate',
     {
       method: 'post',
       data,
@@ -50,7 +50,7 @@ export const fetchByAllCategoryQueryAchievedRankByAmountApi = (
   data: ByAllCategoryQueryAchievedRankByAmountReq,
 ) => {
   return request(
-    '/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByAmount',
+    '/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByAmount',
     {
       method: 'post',
       data,
@@ -59,7 +59,7 @@ export const fetchByAllCategoryQueryAchievedRankByAmountApi = (
 };
 
 export const fetchByOperatorGetOverviewApi = (data: ByOperatorGetOverviewReq) => {
-  return request('/merchant-customer/merchant/customer/leads/statistic/byOperator/getOverview', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/getOverview', {
     method: 'post',
     data,
   });
@@ -67,7 +67,7 @@ export const fetchByOperatorGetOverviewApi = (data: ByOperatorGetOverviewReq) =>
 
 export const fetchByOperatorQueryWaitingRankApi = (data: ByOperatorQueryWaitingRankReq) => {
   return request(
-    '/merchant-customer/merchant/customer/leads/statistic/byOperator/queryWaitingRank',
+    '/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/queryWaitingRank',
     {
       method: 'post',
       data,
@@ -76,7 +76,7 @@ export const fetchByOperatorQueryWaitingRankApi = (data: ByOperatorQueryWaitingR
 };
 
 export const fetchByOperatorGetRateApi = (data: ByOperatorGetRateReq) => {
-  return request('/merchant-customer/merchant/customer/leads/statistic/byOperator/getRate', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/getRate', {
     method: 'post',
     data,
   });
@@ -86,7 +86,7 @@ export const fetchByOperatorQueryAchievedRankByAmountApi = (
   data: ByOperatorQueryAchievedRankByAmountReq,
 ) => {
   return request(
-    '/merchant-customer/merchant/customer/leads/statistic/byOperator/queryAchievedRankByAmount',
+    '/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/queryAchievedRankByAmount',
     {
       method: 'post',
       data,
@@ -95,7 +95,7 @@ export const fetchByOperatorQueryAchievedRankByAmountApi = (
 };
 
 export const fetchByAllCategoryGetOverviewApi = (data: ByAllCategoryGetOverviewReq) => {
-  return request('/merchant-customer/merchant/customer/leads/statistic/byAllCategory/getOverview', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/getOverview', {
     method: 'post',
     data,
   });

@@ -5,21 +5,21 @@ import type { QueryManagerInfoReq } from '@/entities/settingColumnsModal/interfa
 import request from '@/utils/request';
 
 export const fetchConfigQueryUserConfigApi = (data: ConfigQueryUserConfigReq) => {
-  return request('/merchant-customer/merchant/customer/column/config/queryUserConfig', {
+  return request('/youthcamp-mer-customer/merchant/customer/column/config/queryUserConfig', {
     method: 'post',
     data,
   });
 };
 
 export const fetchConfigSaveUserConfigApi = (data: ConfigSaveUserConfigReq) => {
-  return request('/merchant-customer/merchant/customer/column/config/saveUserConfig', {
+  return request('/youthcamp-mer-customer/merchant/customer/column/config/saveUserConfig', {
     method: 'post',
     data,
   });
 };
 
 export const fetchConfigQueryBaseConfigApi = (data: ConfigQueryBaseConfigReq) => {
-  return request('/merchant-customer/merchant/customer/column/config/queryBaseConfig', {
+  return request('/youthcamp-mer-customer/merchant/customer/column/config/queryBaseConfig', {
     method: 'post',
     data,
   });

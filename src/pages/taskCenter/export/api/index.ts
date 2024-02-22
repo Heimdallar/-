@@ -1,7 +1,7 @@
 import {requestApi } from '@/utils/request'
 import { IListParams, IFileDownloadParams } from '../interface'
 
-const API_PREFIX = '/merchant-customer'
+const API_PREFIX = '/youthcamp-mer-customer'
 
 export const fetchTaskList = (queryParams: IListParams) => {
   return requestApi(`${API_PREFIX}/merchant/customer/file/task/page`, {...queryParams}, 'POST')

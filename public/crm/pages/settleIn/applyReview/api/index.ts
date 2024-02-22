@@ -10,7 +10,7 @@ import {
   IReviewParams,
 } from '../interface';
 
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 /* 获取评审(审批)列表 */
 export const getApprovalList = (params: IListParams): Promise<any> =>

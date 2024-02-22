@@ -30,7 +30,7 @@ const buildMakeStatisticIndex = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/index',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/index',
       configs: [
         {
           key: 'categoryInfoList',

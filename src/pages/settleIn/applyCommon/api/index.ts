@@ -2,7 +2,7 @@
 import { requestApi } from '@/utils/request';
 import { IApplyDetailParams } from '../interface';
 
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 /* 获取申请单详情 */
 export const getApplyDetail = (params: IApplyDetailParams): Promise<any> =>

@@ -3,7 +3,7 @@ import request, { requestApi } from '@/utils/request';
 import { IListParams } from '../interface';
 import { initRequstParams } from '../config';
 import { AddOrUpdateReq, ListResponseData } from './interface';
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 /* 获取需求列表 */
 export const getRequirementList = (queryParams: IListParams) => {

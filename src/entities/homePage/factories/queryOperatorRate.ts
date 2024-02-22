@@ -9,7 +9,7 @@ const buildMakeByOperatorGetRate = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byOperator/getRate',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/getRate',
       configs: [
         {
           key: 'bizDate',

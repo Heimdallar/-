@@ -7,7 +7,7 @@ const makeChildrens = (record: Data) => {
   }
   const { orgId, orgName, spId, parentId, orgType, sort, creator, operator, childrens } = record;
   validEntitiesDataAndLogError({
-    path: '/api/v1/h5/merchant-customer/merchant/customer/org/org/selectOrgTree',
+    path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/org/org/selectOrgTree',
     configs: [
       {
         key: 'orgId',
@@ -70,7 +70,7 @@ const buildMakeOrgSelectOrgTree = () => {
     }
     const { orgId, orgName, spId, parentId, orgType, sort, creator, operator, childrens } = record;
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/org/org/selectOrgTree',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/org/org/selectOrgTree',
       configs: [
         {
           key: 'orgId',

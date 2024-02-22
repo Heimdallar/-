@@ -54,7 +54,7 @@ const buildMakeByOperatorQueryAchievedRankByAmount = () => {
     maxLevel = record.extra?.firstData?.achievedInfo?.achievedAmount * 1;
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byOperator/queryAchievedRankByAmount',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/queryAchievedRankByAmount',
       configs: [
         {
           key: 'datas',

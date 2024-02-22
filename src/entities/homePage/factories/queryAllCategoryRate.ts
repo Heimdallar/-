@@ -9,7 +9,7 @@ const buildMakeByAllCategoryGetRate = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byAllCategory/getRate',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/getRate',
       configs: [
         {
           key: 'bizDate',

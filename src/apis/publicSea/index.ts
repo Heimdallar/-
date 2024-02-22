@@ -10,70 +10,70 @@ import type { ClueObtainPersonalInfoReq } from '@/entities/publicSea/interface/o
 import request from '@/utils/request';
 
 export const fetchPrivateSeaGetFeedbackTalkFailsApi = (params) => {
-  return request('/merchant-customer/merchant/customer/leads/clue/getFeedbackTalkFails', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/clue/getFeedbackTalkFails', {
 	  method: 'get',
 	  params,
   });
 };
 
 export const fetchClueObtainPersonalInfoApi = (data: ClueObtainPersonalInfoReq) => {
-  return request('/merchant-customer/merchant/customer/leads/clue/obtainPersonalInfo', {
+  return request('/youthcamp-mer-customer/merchant/customer/leads/clue/obtainPersonalInfo', {
     method: 'post',
     data,
   });
 };
 
 export const fetchClueTransferApi = (data: ClueTransferReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/transfer', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/transfer', {
 		method: 'post',
 		data,
   });
 };
 
 export const fetchClueBatchTransferApi = (data: ClueBatchTransferReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/batchTransfer', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/batchTransfer', {
 		method: 'post',
 		data,
   });
 };
 
 export const fetchClueAllotApi = (data: ClueAllotReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/allot', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/allot', {
 		method: 'post',
 		data,
   });
 };
 
 export const fetchClueBatchAllotApi = (data: ClueBatchAllotReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/batchAllot', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/batchAllot', {
 		method: 'post',
 		data,
   });
 };
 
 export const fetchClueDetailApi = (params: ClueDetailReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/detail', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/detail', {
 		method: 'get',
 		params,
   });
 };
 
 export const fetchClueGetRejectFailsApi = (params: ClueGetRejectFailsReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/getRejectFails', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/getRejectFails', {
 		method: 'get',
 		params,
 	})
 };
 
 export const fetchClueGetRejectInvalidLeadsApi = (params: ClueGetRejectInvalidLeadsReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/getRejectInvalidLeads', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/getRejectInvalidLeads', {
 		method: 'get',
 		params,
 	})
 };
 
 export const fetchClueRejectApi = (data: ClueRejectReq) => {
-	return request('/merchant-customer/merchant/customer/leads/clue/reject', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/clue/reject', {
 		method: 'post',
 		data,
 	})

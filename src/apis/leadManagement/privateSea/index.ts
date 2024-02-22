@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export const fetchPrivateSeaGetFeedbackTalkFailsApi = () => {
-	return request('/merchant-customer/merchant/customer/leads/privateSea/getFeedbackTalkFails', {
+	return request('/youthcamp-mer-customer/merchant/customer/leads/privateSea/getFeedbackTalkFails', {
 		method: 'post',
 	})
 };

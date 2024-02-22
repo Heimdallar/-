@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const fetchPlanSubmitApi = (data) => {
   const { onSubmit, ...rest } = data
-  return request('/merchant-customer/merchant/customer/plan/submit', {
+  return request('/youthcamp-mer-customer/merchant/customer/plan/submit', {
     method: 'post',
     data: rest,
     ignoreToken: true,

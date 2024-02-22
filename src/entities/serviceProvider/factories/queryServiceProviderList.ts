@@ -17,7 +17,7 @@ const buildMakeServiceProviderList = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/org/service_provider/page',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/org/service_provider/page',
       configs: [
         {
           key: 'spId',

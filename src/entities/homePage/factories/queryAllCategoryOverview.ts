@@ -8,7 +8,7 @@ const buildMakeByAllCategoryGetOverview = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byAllCategory/getOverview',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/getOverview',
       configs: [
         {
           key: 'waitClaimTotalAmount',

@@ -1,6 +1,6 @@
 import request, { requestApi } from '@/utils/request';
 
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 export const fetchPageBrandList = (queryParams: any) => {
   return requestApi(

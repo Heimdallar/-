@@ -2,7 +2,7 @@ import { IeaAuditReq } from '@/entities/fetchIeaAudit/interface/fetchIeaAudit'
 import request from '@/utils/request'
 
 export const fetchIeaAuditApi = (data: IeaAuditReq) => {
-	return request('/merchant-customer/merchant/customer/iea/audit', {
+	return request('/youthcamp-mer-customer/merchant/customer/iea/audit', {
 		method: 'post',
 		data,
 	})

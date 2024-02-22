@@ -4,21 +4,21 @@ import type { AddOrUpdateReq } from '@/entities/serviceProvider/interface/queryS
 import type { PageReq } from '@/entities/serviceProvider/interface/queryServiceProviderList';
 
 export const fetchServiceProviderPageApi = (data: PageReq) => {
-  return request('/merchant-customer/merchant/customer/org/service_provider/page', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/service_provider/page', {
     method: 'post',
     data,
   });
 };
 
 export const fetchServiceProviderAddOrUpdateApi = (data: AddOrUpdateReq) => {
-  return request('/merchant-customer/merchant/customer/org/service_provider/addOrUpdate', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/service_provider/addOrUpdate', {
     method: 'post',
     data,
   });
 };
 
 export const fetchServiceProviderDelApi = (data: DelReq) => {
-  return request('/merchant-customer/merchant/customer/org/service_provider/del', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/service_provider/del', {
     method: 'post',
     data,
   });
@@ -32,42 +32,42 @@ export const fetchCategoryListApi = (data) => {
 };
 
 export const fetchServiceProviderListCategoryApi = (params) => {
-  return request('/merchant-customer/merchant/customer/org/service_provider/listCategory', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/service_provider/listCategory', {
     method: 'get',
     params,
   });
 };
 
 export const fetchAddPermissionDataApi = (data) => {
-  return request('/merchant-customer/merchant/customer/user/permission_data/add', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/permission_data/add', {
     method: 'post',
     data,
   });
 };
 
 export const fetchPermissionDataPageApi = (data) => {
-  return request('/merchant-customer/merchant/customer/user/permission_data/page', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/permission_data/page', {
     method: 'post',
     data,
   });
 };
 
 export const fetchUpdateStatusApi = (data) => {
-  return request('/merchant-customer/merchant/customer/user/permission_data/updateStatus', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/permission_data/updateStatus', {
     method: 'post',
     data,
   });
 };
 
 export const fetchUpdatePermissionDataApi = (data) => {
-  return request('/merchant-customer/merchant/customer/user/permission_data/update', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/permission_data/update', {
     method: 'post',
     data,
   });
 };
 
 export const fetchPermissionDataListAllCategoryApi = (params) => {
-  return request('/merchant-customer/merchant/customer/user/permission_data/listAllCategory', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/permission_data/listAllCategory', {
     method: 'get',
     params,
   });

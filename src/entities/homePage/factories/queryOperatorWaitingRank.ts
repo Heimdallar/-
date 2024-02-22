@@ -50,7 +50,7 @@ const buildMakeByOperatorQueryWaitingRank = () => {
     }
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byOperator/queryWaitingRank',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byOperator/queryWaitingRank',
       configs: [
         {
           key: 'page',

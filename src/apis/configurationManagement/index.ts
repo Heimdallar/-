@@ -7,49 +7,49 @@ import type { OrgAddUpdateOrgUserReq } from '@/entities/configurationManagement/
 import request from '@/utils/request';
 
 export const fetchOrgAddUpdateOrgUserApi = (data: OrgAddUpdateOrgUserReq) => {
-  return request('/merchant-customer/merchant/customer/user/org/addUpdateOrgUser', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/org/addUpdateOrgUser', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgSelectOrgUserApi = (data: OrgSelectOrgUserReq) => {
-  return request('/merchant-customer/merchant/customer/user/org/selectOrgUser', {
+  return request('/youthcamp-mer-customer/merchant/customer/user/org/selectOrgUser', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgSelectOrgInfoApi = (data: OrgSelectOrgInfoReq) => {
-  return request('/merchant-customer/merchant/customer/org/org/selectOrgInfo', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/org/selectOrgInfo', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgSelectOrgDataRoleApi = (data: OrgSelectOrgDataRoleReq) => {
-  return request('/merchant-customer/merchant/customer/org/org/selectOrgDataRole', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/org/selectOrgDataRole', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgAddOrUpdateApi = (data: OrgAddOrUpdateReq) => {
-  return request('/merchant-customer/merchant/customer/org/org/addOrUpdate', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/org/addOrUpdate', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgDelOrgApi = (data: OrgDelOrgReq) => {
-  return request('/merchant-customer/merchant/customer/org/org/delOrg', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/org/delOrg', {
     method: 'post',
     data,
   });
 };
 
 export const fetchOrgSelectOrgTreeApi = () => {
-  return request('/merchant-customer/merchant/customer/org/org/selectOrgTree', {
+  return request('/youthcamp-mer-customer/merchant/customer/org/org/selectOrgTree', {
     method: 'post',
   });
 };

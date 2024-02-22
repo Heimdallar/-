@@ -1,6 +1,6 @@
 import { requestApi } from '@/utils/request';
 
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 // 线索导入导出功能关闭开关
 export const closeSwitch = (): Promise<boolean> => 
@@ -90,7 +90,7 @@ export const querySettings = (): Promise<any> =>
 // 类目查询 (根据brandId)
 export const getCategoryListByBrand = (params: any) =>
   requestApi(
-    '/merchant-customer/merchant/customer/leads/clue/level1CategoryByBrand',
+    '/youthcamp-mer-customer/merchant/customer/leads/clue/level1CategoryByBrand',
     params,
     'GET',
   );
@@ -130,7 +130,7 @@ export const importTask = (queryParams: any) =>
 
 export const getBrandInfo = (params: any) =>
   requestApi(
-    '/merchant-customer/merchant/customer/brand/apply/getBrandInfo',
+    '/youthcamp-mer-customer/merchant/customer/brand/apply/getBrandInfo',
     params,
     'GET',
   );

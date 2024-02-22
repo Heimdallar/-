@@ -2,7 +2,7 @@ import type { IncludePredictReq } from '@/entities/listIncludePredict/interface/
 import request from '@/utils/request';
 
 export const fetchIncludePredictApi = (data: IncludePredictReq) => {
-  return request('/merchant-customer/merchant/customer/recruit/brand/list/include/predict', {
+  return request('/youthcamp-mer-customer/merchant/customer/recruit/brand/list/include/predict', {
     method: 'post',
     data,
   });

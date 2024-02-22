@@ -24,7 +24,7 @@ import {
 } from '../interface';
 import request from '@/utils/request';
 
-const API_PREFIX = '/merchant-customer';
+const API_PREFIX = '/youthcamp-mer-customer';
 
 /* 获取线索列表 */
 export const getPublicSeaClueList = (queryParams: IListParams) => {

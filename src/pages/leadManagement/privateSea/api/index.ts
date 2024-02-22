@@ -2,7 +2,7 @@ import { importTask } from '@/pages/settleIn/applyReview/api';
 import { IAuthBusinessDeveloperParams, IAuthParams, IAuthTargetBdParams, IBatchTransferParams, ICategoryListParams, IDetailParams, IEntryInfoParams, IExportParams, IFeedBackParams, IFollowUpParams, IListParams, IManagerInfoParams, IQueryMsgParams, IReviewParams, ISaveAccountParams, ITopParams, ITransferParams } from '../interface';
 import { requestApi } from '@/utils/request';
 
-const API_PREFIX = '/merchant-customer'
+const API_PREFIX = '/youthcamp-mer-customer'
 
 /* 获取私海线索列表 */
 export const getPrivateSeaQueryList = (params: IListParams): Promise<any> =>

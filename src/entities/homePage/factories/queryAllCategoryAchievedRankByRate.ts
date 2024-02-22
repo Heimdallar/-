@@ -55,7 +55,7 @@ const buildMakeByAllCategoryQueryAchievedRankByRate = () => {
     maxLevel = record.extra?.firstData?.achievedInfo?.achievedRate * 1;
 
     validEntitiesDataAndLogError({
-      path: '/api/v1/h5/merchant-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByRate',
+      path: '/api/v1/h5/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/queryAchievedRankByRate',
       configs: [
         {
           key: 'page',

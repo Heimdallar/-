@@ -30,7 +30,7 @@ export const commonOssUplaod = (e = 'jpg') => {
 };
 
 export const crmToken = (queryParams: any) => {
-  return requestApi(`/merchant-customer/merchant/customer/oss/getOssToken`, queryParams, 'GET', '', {
+  return requestApi(`/youthcamp-mer-customer/merchant/customer/oss/getOssToken`, queryParams, 'GET', '', {
     // @ts-ignore
     backstageCode: 'crm',
     ...getGrap(),

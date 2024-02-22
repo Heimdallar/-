@@ -2,7 +2,7 @@ import { IeaObtainIeaInfoPageableReq } from '@/entities/fetchObtainIeaInfoPageab
 import request from '@/utils/request'
 
 export const fetchIeaObtainIeaInfoPageableApi = (data: IeaObtainIeaInfoPageableReq) => {
-  return request('/merchant-customer/merchant/customer/iea/obtainIeaInfoPageable', {
+  return request('/youthcamp-mer-customer/merchant/customer/iea/obtainIeaInfoPageable', {
     method: 'post',
     data,
   })
