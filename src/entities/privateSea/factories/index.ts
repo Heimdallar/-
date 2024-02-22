@@ -1,3 +1,0 @@
-import buildMakeClueGetfeedbackInvalidLeads from './getfeedbackInvalidLeads'
-
-export const makeClueGetfeedbackInvalidLeads = buildMakeClueGetfeedbackInvalidLeads()
