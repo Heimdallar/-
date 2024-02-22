@@ -1,8 +1,9 @@
-import { ESMWebpackPlugin, getUmiPlugin } from '@monorepo/esm-plugin';
+import { ESMWebpackPlugin, getUmiPlugin, ESMType } from '@monorepo/esm-plugin';
 import path from 'path';
 import dotenv from 'dotenv';
 import { pick } from 'lodash';
 import { defineConfig } from '@umijs/max';
+import { proxyList } from './proxyList';
 
 const pEnv = process.env || {};
 
@@ -42,6 +43,7 @@ export default defineConfig({
     'module:@dusec/babel-sec-plugin',
   ],
   favicons: ['/favicon.ico'],
+  esbuildMinifyIIFE: true,
   // 热更
   fastRefresh: true,
   hash: true,
@@ -57,7 +59,7 @@ export default defineConfig({
   //   exclude: [/^@monorepo\/.*/],
   // },
   proxy: {
-    '/api': {
+    't1/api/v1/h5/luna': {
       target: 'https://t1-auth.shizhuang-inc.net',
       changeOrigin: true,
       onProxyRes: (proxyRes, req) => {
@@ -65,6 +67,7 @@ export default defineConfig({
         proxyRes.headers['x-real-url'] = `${protocol}${port ? `:${port}` : ''}//${host}${req.url}`;
       },
     },
+    ...proxyList,
   },
   title: pEnv.TITLE,
   presets: ['@umijs/preset-pro'],
@@ -91,10 +94,15 @@ export default defineConfig({
     ],
   },
   request: {},
-  plugins: ['@umijs/plugin-open-browser', '@umijs/plugin-pro-cacher', getUmiPlugin(), path.join(__dirname, '../generator/page')],
+  plugins: [
+    '@umijs/plugin-open-browser',
+    '@umijs/plugin-pro-cacher',
+    getUmiPlugin(),
+    path.join(__dirname, '../generator/page'),
+  ],
   chainWebpack(config) {
     // 这里引入 webpack 插件
     config.plugin('esm').use(new ESMWebpackPlugin({}));
   },
-  open: {}
+  open: {},
 });

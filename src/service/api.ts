@@ -1,9 +1,10 @@
 import { request } from '@umijs/max';
-import { BaseRequest } from '@/utils/request';
+import { IBrandListParams } from '@/entities/interface';
+import { BaseRequest, BaseResponse, requestApi } from '@/utils/request';
 
 /** 获取用户信息 */
 export const getUserInfoInterface = (params?: BaseRequest) =>
-  request('/api/v1/h5/luna/user/getLoginUser', { params });
+  request('/luna/user/getLoginUser', { params });
 
 /** 菜单 */
 interface Menu {
@@ -23,7 +24,7 @@ interface Menu {
 
 /** 获取菜单列表 */
 export const getMenuListInterface = (params: { tenantId: number; backstageCode: string }) =>
-  request<Menu[]>('/api/v1/h5/luna/menu/list', { params });
+  request<Menu[]>('/luna/menu/list', { params });
 
 /** 获取菜单功能权限 */
 export const getMenuAuthListInterface = (params: { menuId: number; backstageId: number }) =>
@@ -33,4 +34,8 @@ export const getMenuAuthListInterface = (params: { menuId: number; backstageId: 
       elementName: string;
       elementUrl: string;
     }[]
-  >('/api/v1/h5/luna/element/list', { params });
+  >('/luna/element/list', { params });
+
+  export const getBrandByName = (queryParams: IBrandListParams) => {
+    return requestApi('/commodity-admin/admin/brand/page-list', { ...queryParams }, 'POST');
+  };

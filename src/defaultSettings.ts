@@ -7,7 +7,7 @@ const pEnv = process.env || {};
 type RuntimeEnvTypes = 'dev' | 'd1' | 't0' | 't1' | 't2' | 'pre' | 'prod';
 
 /** 返回业务环境 */
-const getRuntimeEnv = (): RuntimeEnvTypes => {
+export const getRuntimeEnv = (): RuntimeEnvTypes => {
   const hostname = window.location.hostname.toLowerCase();
   const port = Number(window.location.port);
 
@@ -32,11 +32,14 @@ const getBuildEnv = (): string => {
 /** 应用版本号 */
 const projectVersion = packageJSON.version;
 
+console.log('pEnv',pEnv);
 const isDev = pEnv.NODE_ENV === 'development';
 const backstageCode = pEnv.BACK_STAGE_CODE || '';
 
+const PREFIX = '/api/v1/h5'; // 默认网关
+
 const envKey = `${backstageCode}_ENV`;
-const ENV = localStorage.getItem(envKey) || 't1'; // 开发环境变量
+export const ENV = localStorage.getItem(envKey) || 't1'; // 开发环境变量
 
 /** 项目配置 */
 export const config = {
@@ -71,5 +74,5 @@ export const config = {
   tokenKey: isDev ? `${ENV}_accessToken` : 'accessToken',
 
   /** 接口请求 Prefix */
-  proxyFix: '',
+  proxyFix: isDev ? `/${ENV + PREFIX}` : PREFIX
 };
