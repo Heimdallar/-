@@ -3,10 +3,10 @@ import type { ActionType, ProColumns } from '@poizon-design/pro-components';
 import { ProTable, TableDropdown } from '@poizon-design/pro-components';
 import { Button, Checkbox,Input, Modal, Form} from 'poizon-design';
 import { useRef, useState } from 'react';
-import request from 'umi-request';
 import {Item1,ReturnItem} from './service/interface'
-import { getMockTableList } from './service/mock';
-import Addnew from './Addnew';
+import { ProSchemaRenderValueTypeFunction } from '@poizon-design/pro-form/lib/components/SchemaForm'; 
+import { addnewitem, deleteitem, edititem } from './service';
+
 const columns: ProColumns<Item1>[] = [
   {
     dataIndex: 'index',
@@ -17,14 +17,14 @@ const columns: ProColumns<Item1>[] = [
   {
     title: '一级类目',
     dataIndex: 'title',
-    copyable: true,
+    // copyable: true,
     ellipsis: true,
   },
   {
     disable: true,
     title: '风格',
     dataIndex: 'style',
-    copyable: true,
+    // copyable: true,
     ellipsis: true,
     tip: '过长会自动收缩',
     
@@ -64,6 +64,7 @@ const columns: ProColumns<Item1>[] = [
     title: '操作',
     valueType: 'option',
     key: 'option',
+    
     render: (text, record, _, action) => [
       <a
         key="editable"
@@ -73,13 +74,11 @@ const columns: ProColumns<Item1>[] = [
       >
         编辑
       </a>,
-      <a   key="delete" onClick={()=>{
-        action?.reset
-      }}>
-        删除
-      </a>,
-     
+      <a key='delete' onClick={()=>{
+        action?.cancelEditable
+      }}>取消</a>
     ],
+  
   },
 ];
 const tableListDataSource: ReturnItem[] = [];
@@ -106,12 +105,17 @@ export default () => {
   const showModal = () => {
     setvisiable(true);
   };
-  const handleOk = () => {
-    setvisiable(false);
+  
+  
+  const onFinish = (values: any) => {
+    console.log('onfinish')
+    addnewitem(values)
+    setvisiable(false)
   };
 
-  const handleCancel = () => {
-    setvisiable(false);
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+    setvisiable(false)
   };
  
 
@@ -128,8 +132,11 @@ export default () => {
           success: true,
         });
       }}
+
       editable={{
         type: 'multiple',
+        onSave:(key,row,originRow)=>(edititem(row)),
+        onDelete:(key,row)=>(deleteitem(row))
       }}
       columnsState={{
         persistenceKey: 'pro-table-singe-demos',
@@ -142,11 +149,7 @@ export default () => {
       search={{
         labelWidth: 'auto',
       }}
-      options={{
-        setting: {
-          listsHeight: 400,
-        },
-      }}
+      options={false}
       form={{
         // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
         syncToUrl: (values, type) => {
@@ -172,9 +175,40 @@ export default () => {
         
       ]}
     />
-         <Modal title="新增类目风格" visible={visiabel} onOk={handleOk} onCancel={handleCancel}>
-            <Addnew></Addnew>
-          </Modal>
+         <Modal title="新增类目风格" visible={visiabel}  	footer={null}>
+         <Form
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
+
+              >
+              <Form.Item
+                label="类目名称"
+                name="title"
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label="风格"
+                name="style"
+              >
+                <Input />
+              </Form.Item>
+
+                <Form.Item wrapperCol={{ offset: 16, span: 16 }}>
+                      <Button type="primary" htmlType="submit">
+                        提交
+                      </Button>
+                      <Button> 取消</Button>
+                    </Form.Item>
+                        </Form>
+                  
+                        </Modal>
          
    </>
   );
