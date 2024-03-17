@@ -20,7 +20,9 @@
   export type Item1 = PageRequest&{
     id:number
    title:string;
-   style:string
+   style:string;
+   name:string;
+   updated_at:number;
   };
   export type ReturnItem=PageReply&{
     url: string;

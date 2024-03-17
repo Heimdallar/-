@@ -1,11 +1,11 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@poizon-design/pro-components';
 import { ProTable, TableDropdown } from '@poizon-design/pro-components';
-import { Button, Checkbox,Input, Modal, Form} from 'poizon-design';
-import { useRef, useState } from 'react';
+import { Button, Checkbox,Input, Modal, Form,Select} from 'poizon-design';
+import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem} from './service/interface'
 import { ProSchemaRenderValueTypeFunction } from '@poizon-design/pro-form/lib/components/SchemaForm'; 
-import { addnewitem, deleteitem, edititem } from './service';
+import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
 
 const columns: ProColumns<Item1>[] = [
   {
@@ -81,31 +81,34 @@ const columns: ProColumns<Item1>[] = [
   
   },
 ];
-const tableListDataSource: ReturnItem[] = [];
-for (let i = 0; i < 100; i += 1) {
-  tableListDataSource.push({
-    total:100,
-    id: i,
-   name: 'AppName',
-    title: 'xxj',
-    url: 'addwas',
-    updated_at: Date.now() - Math.floor(Math.random() * 100000),
-    created_at: Date.now() - Math.floor(Math.random() * 100000),
-    style: i % 2 === 1 ? '很长很长很长很长很长很长很长的文字要展示但是要留下尾巴' : '简短备注文案',
-  });
-}
+// const tableListDataSource: ReturnItem[] = [];
+// for (let i = 0; i < 100; i += 1) {
+//   tableListDataSource.push({
+//     total:100,
+//     id: i,
+//    name: 'AppName',
+//     title: 'xxj',
+//     url: 'addwas',
+//     updated_at: Date.now() - Math.floor(Math.random() * 100000),
+//     created_at: Date.now() - Math.floor(Math.random() * 100000),
+//     style: i % 2 === 1 ? '很长很长很长很长很长很长很长的文字要展示但是要留下尾巴' : '简短备注文案',
+//   });
+// }
 
 
 
 
 export default () => {
   const actionRef = useRef<ActionType>();
+  const [options,setoptions]=useState(['item1','item2'])
   const [visiabel,setvisiable]=useState(false)
+  const{Option}=Select
  
   const showModal = () => {
     setvisiable(true);
   };
   
+
   
   const onFinish = (values: any) => {
     console.log('onfinish')
@@ -117,6 +120,17 @@ export default () => {
     console.log('Failed:', errorInfo);
     setvisiable(false)
   };
+  const cancelEditable=()=>{
+    setvisiable(false)
+  }
+  useEffect(  ()=>{
+    const fetchData = async () => {
+      const data = await fetchTitle();
+      // setoptions(data ||[]);
+    };
+  
+    fetchData();
+  }, []); // 空数组表示只在组件挂载时请求一次数据
  
 
   return (
@@ -125,14 +139,11 @@ export default () => {
       columns={columns}
       actionRef={actionRef}
       cardBordered
-      request={async (params = {}, sort, filter) => {
-        // console.log(sort, filter);
-        return Promise.resolve({
-          data: tableListDataSource,
-          success: true,
-        });
-      }}
-
+      request={(params={total:100},sort,filter)=>{
+        return fetchData(params)
+      }
+      }
+  
       editable={{
         type: 'multiple',
         onSave:(key,row,originRow)=>(edititem(row)),
@@ -175,7 +186,7 @@ export default () => {
         
       ]}
     />
-         <Modal title="新增类目风格" visible={visiabel}  	footer={null}>
+         <Modal title="新增类目风格" visible={visiabel}  	footer={null} onCancel={cancelEditable}>
          <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -190,7 +201,12 @@ export default () => {
                 label="类目名称"
                 name="title"
               >
-                <Input />
+                <Select>
+          {options.map(option => (
+            <Option key={option} value={option}>{option}</Option>
+          ))}
+        </Select>
+
               </Form.Item>
 
               <Form.Item
@@ -204,7 +220,7 @@ export default () => {
                       <Button type="primary" htmlType="submit">
                         提交
                       </Button>
-                      <Button> 取消</Button>
+                      <Button onClick={cancelEditable}> 取消</Button>
                     </Form.Item>
                         </Form>
                   
