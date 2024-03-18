@@ -93,7 +93,7 @@ export const requestApi = <T>(
     // @ts-ignore
     headers: {
       ...headers,
-      backstageCode: 'crm',
+      backstageCode: 'youth-camp-fe-app',
     },
     prefix: proxyFix,
   })
@@ -120,7 +120,7 @@ const newRequestApi = <T>(url: string, options: optionsProps) => {
     prefix: proxyFix,
     // @ts-ignore
     headers: {
-      backstageCode: 'crm',
+      backstageCode: 'youth-camp-fe-app',
       ...options?.headers,
     },
     ...options,
