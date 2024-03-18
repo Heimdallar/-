@@ -12,6 +12,7 @@ import {
   ProFormList,
   ProForm,
 } from '@poizon-design/pro-form';
+import ProUpload, { UploadScene } from '@/components/ProUpload/index';
 import DuUpload from '@poizon-design/upload';
 import { BusinessTypeEum, BusinessTypeMap } from '../page-step-form/constant';
 import './index.less';
@@ -35,6 +36,9 @@ const DuModalForm: FC = () => {
         formRef={formRef}
         layout="horizontal"
         labelCol={{ span: 6 }}
+        onFinish={async (value) => {
+          console.log({ value });
+        }}
         onVisibleChange={(e) => setVisible(e)}
       >
         <ProFormRadio.Group
@@ -102,13 +106,17 @@ const DuModalForm: FC = () => {
             return <div />;
           }}
         </ProFormDependency>
-        <Form.Item label="企业营业执照" name="licence">
+        <Form.Item label="企业营业执照" name="licence" valuePropName="fileList">
           {/* 得物上传组件：https://pd.shizhuang-inc.com/material/@poizon-design/upload */}
-          <DuUpload
+          <ProUpload
+            bizCode="merchant_entry"
             accept=".png,.jpg,.jpeg"
+            listType="picture-card"
+            size={10}
+            scene={UploadScene.crm}
+            toCdn
             maxCount={1}
-            name="licenceImg"
-            uploadBtnText="营业执照"
+            tips={<span>请上传联系方式，文件格式限制为png/jpg，不可超过10M</span>}
           />
         </Form.Item>
         <ProFormText
