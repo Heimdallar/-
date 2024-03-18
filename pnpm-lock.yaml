@@ -60,9 +60,6 @@ dependencies:
   '@poizon-design/pro-card':
     specifier: 1.20.21
     version: 1.20.21(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-  '@poizon-design/pro-components':
-    specifier: 1.1.23-beta.1
-    version: 1.1.23-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
   '@poizon-design/pro-descriptions':
     specifier: 1.12.5
     version: 1.12.5(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
@@ -5422,49 +5419,6 @@ packages:
       - react-dom
     dev: false
 
-  /@poizon-design/pro-card@1.20.22-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-neyPc8G/xqBiWClIGDGV8EoBrqNSnhqvPvwdPYPF3A4b+sbLdS3znBFRGSG+yxa9HbsOYm+l7LEdTMABijHoNw==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.3.2
-      omit.js: 2.0.2
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-    transitivePeerDependencies:
-      - prop-types
-      - react-dom
-    dev: false
-
-  /@poizon-design/pro-components@1.1.23-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-K8HcrKw1NZRTvAAUldvW7mO/kngy90NWp5uB2S7/tHb2brIMET1STMMbg20tR39WpPYK13IIafG7fQIA8fxIfw==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-card': 1.20.22-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-descriptions': 1.12.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-field': 1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-form': 1.74.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-layout': 6.38.23-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-list': 1.21.85-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-skeleton': 1.1.8-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-table': 2.80.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-      - rc-field-form
-    dev: false
-
   /@poizon-design/pro-descriptions@1.12.5(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-au2ZK52b04KRAezCBQp4fxk+snHeNnWo76f8zV9VXzm3VztyIVGaPSwXxrJqgTARAeG6vSbG1yaMP+z9qfvSZA==}
     peerDependencies:
@@ -5477,26 +5431,6 @@ packages:
       '@poizon-design/pro-utils': 1.45.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
       poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
       rc-util: 5.24.4(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      use-json-comparison: 1.0.6(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-      - rc-field-form
-      - react-dom
-    dev: false
-
-  /@poizon-design/pro-descriptions@1.12.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-/IHDUXXRE8CWnwb6g4l4RMpIxPmxqQU/li3J2N8utnH8j9TJ9pfIqsCAm0u6ZGtAC1S3GSCGjZWhD+AierlByw==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-field': 1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-form': 1.74.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-skeleton': 1.1.8-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       use-json-comparison: 1.0.6(react@18.2.0)
     transitivePeerDependencies:
@@ -5529,30 +5463,6 @@ packages:
       - react-dom
     dev: false
 
-  /@poizon-design/pro-field@1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-Ybh/O81rAB6/zsUykh+L6DzrV409mQJJpOkLl3Za3theLtL0bCk8PG57H9Vs/bntZRSweUNd9x9EfYBqET1ERw==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@chenshuai2144/sketch-color': 1.0.8(react@18.2.0)
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.3.2
-      lodash.omit: 4.5.0
-      lodash.tonumber: 4.0.3
-      moment: 2.29.4
-      omit.js: 2.0.2
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      swr: 1.3.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-      - react-dom
-    dev: false
-
   /@poizon-design/pro-form@1.74.5(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-xypyhAYjMH2rQKrBrAnXiSwuuR0hbaukhZWUJ2xylAZgCmwoZhkmWzimLm9tQzvlXYloHufDKbObBzc+Os400w==}
     peerDependencies:
@@ -5573,34 +5483,6 @@ packages:
       rc-field-form: 1.27.2(react-dom@18.2.0)(react@18.2.0)
       rc-resize-observer: 1.2.0(react-dom@18.2.0)(react@18.2.0)
       rc-util: 5.24.4(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      use-json-comparison: 1.0.6(react@18.2.0)
-      use-media-antd-query: 1.1.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-    dev: false
-
-  /@poizon-design/pro-form@1.74.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+otrqUn6iKz5vR9svFRmkxVy1rvr6BSVEi9EPTA+ZYhrh8lh5odwpvpP2/zWcbJSABc34axS4R7XaW6ga+NaDg==}
-    peerDependencies:
-      rc-field-form: ^1.22.0
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-field': 1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@umijs/use-params': 1.0.9(react@18.2.0)
-      classnames: 2.3.2
-      lodash.merge: 4.6.2
-      omit.js: 2.0.2
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-field-form: 1.27.2(react-dom@18.2.0)(react@18.2.0)
-      rc-resize-observer: 1.2.0(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-json-comparison: 1.0.6(react@18.2.0)
@@ -5639,60 +5521,6 @@ packages:
       - react-dom
     dev: false
 
-  /@poizon-design/pro-layout@6.38.23-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-MCeVFAS5hJZgT5MjDdAbHnEfGDQ2X+3V1Bx1SICPI0ZYgoVjL9PtijGCRA5hsnnE3j5nRzeNpFh6xwoK0/EjeQ==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@umijs/route-utils': 2.2.0
-      '@umijs/ssr-darkreader': 4.9.45
-      '@umijs/use-params': 1.0.9(react@18.2.0)
-      classnames: 2.3.2
-      lodash.merge: 4.6.2
-      omit.js: 2.0.2
-      path-to-regexp: 2.4.0
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-resize-observer: 1.2.0(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      swr: 1.3.0(react@18.2.0)
-      unstated-next: 1.1.0
-      use-json-comparison: 1.0.6(react@18.2.0)
-      use-media-antd-query: 1.1.0(react@18.2.0)
-      warning: 4.0.3
-    transitivePeerDependencies:
-      - prop-types
-      - react-dom
-    dev: false
-
-  /@poizon-design/pro-list@1.21.85-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-IgyQk5ui0IkQy0wKAfyMFDIuSn26TGa7LtVkAR9BWqnhoaE+aMRvjpOeAD8ybjkq1KcJk0mcePd2upoCgGd/7A==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-card': 1.20.22-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-field': 1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-table': 2.80.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.3.2
-      moment: 2.29.4
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-resize-observer: 1.2.0(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 4.21.1
-      react: 18.2.0
-      unstated-next: 1.1.0
-      use-media-antd-query: 1.1.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-      - rc-field-form
-      - react-dom
-    dev: false
-
   /@poizon-design/pro-provider@1.10.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BP2NlKZZQ9uDNVGEfPeeA8tI6ZbPA9wU/XiCOl8W73DduAc6Xul36DBqJIXR/9YOwpqZprwcTH5piYB8rgd1XA==}
     peerDependencies:
@@ -5707,39 +5535,12 @@ packages:
       - react-dom
     dev: false
 
-  /@poizon-design/pro-provider@1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-m9HbCNn+gWE1ZqQXBolsMcaJr6mQQ36BQwnTGEeHll2sCQJSqTAy5/9sOW8IrVWG6Gy9NxG93blozwQ8gYCj9g==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.23.2
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      swr: 1.3.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-dom
-    dev: false
-
   /@poizon-design/pro-skeleton@1.1.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-wCmILhSKlaanjPTNgZkgdd4Cf8JBZd/XVrkGEFLbYsOuwgHlJRxavv8kfhXYnqEt4CsFww7P48/SuFAp3Hk8Cw==}
     peerDependencies:
       react: '>=16.9.0'
     dependencies:
       '@babel/runtime': 7.21.0
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      use-media-antd-query: 1.1.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-dom
-    dev: false
-
-  /@poizon-design/pro-skeleton@1.1.8-beta.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-olmmMHuxh31m2VUzoV7XDqSpVvG6D9j4p/HbPcZQYfYyCw/dnZwUUAvV7fJutCJTwaJZFhKQyO/eouNG+J+vAg==}
-    peerDependencies:
-      react: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.23.2
       poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       use-media-antd-query: 1.1.0(react@18.2.0)
@@ -5777,36 +5578,6 @@ packages:
       - prop-types
     dev: false
 
-  /@poizon-design/pro-table@2.80.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-gnPieF3CpZ/3P8ISu7qh0z1QrpZpJhmfF6NoZdouPGBd77/2mXiMrLjLwFmB6spuaDf1GatdiZp98Am8rCAsMQ==}
-    peerDependencies:
-      rc-field-form: ^1.22.0
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-card': 1.20.22-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-field': 1.36.6-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-form': 1.74.6-beta.1(prop-types@15.8.1)(rc-field-form@1.27.2)(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      '@poizon-design/pro-utils': 1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.3.2
-      moment: 2.29.4
-      omit.js: 2.0.2
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-field-form: 1.27.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-sortable-hoc: 2.0.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      unstated-next: 1.1.0
-      use-json-comparison: 1.0.6(react@18.2.0)
-      use-media-antd-query: 1.1.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-    dev: false
-
   /@poizon-design/pro-utils@1.45.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-aOVl3/mTdRL9o89OGcbm29X39tCRMvQy1UDq4+PntnuAeG3flKWizKS5+78b0HwSgFGlkmasKbYOqqV6P4dFqA==}
     peerDependencies:
@@ -5820,27 +5591,6 @@ packages:
       moment: 2.29.4
       poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
       rc-util: 5.24.4(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-sortable-hoc: 2.0.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      swr: 1.3.0(react@18.2.0)
-    transitivePeerDependencies:
-      - prop-types
-    dev: false
-
-  /@poizon-design/pro-utils@1.45.4-beta.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-RhvLi/AEo15Zuz/uiihBChT44Qam34Gye15ZnmQZ+CmndzNCADdqqYo1aZLWwqaX28f6qTXQBZZiT0bpbeTCuw==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
-      '@babel/runtime': 7.23.2
-      '@poizon-design/pro-provider': 1.10.1-beta.1(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.3.2
-      moment: 2.29.4
-      poizon-design: 4.24.2(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-sortable-hoc: 2.0.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
