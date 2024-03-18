@@ -1,7 +1,8 @@
-import { getApiUrl, proRequest as request } from '@/utils/request';
+import { proRequest as request  }from '@/utils/request';
 import { Item1, ReturnItem } from './interface';
 
-export const edititem=async(params:{id:number,title:string,style:string,name:string,updated_at:number})=>{
+export const edititem=async(params:{id:number,categoryCreator:string,categoryStyleName:string,categoryOperator:string,modifyTime: Date;//更新时间
+})=>{
     console.log(edititem,params)
     return(
       await  request('xxxx',params
@@ -11,50 +12,39 @@ export const edititem=async(params:{id:number,title:string,style:string,name:str
 export const deleteitem=async(params:{id:number})=>{
     console.log(deleteitem,params)
     return (
-      await  request('',params.id)
+      await  request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/delete',params.id)
     )
 }
 
-export const addnewitem= async(params:{title:string,style:string})=>{
+export const addnewitem= async(params:{ categoryCreator:string,categoryStyleName:string,editorName?:string})=>{
     console.log(addnewitem,params)
     return(
-      await  request('',[params.title,params.style])
+      await  request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/addOrUpdate',params)
     )
 }
 
-export const fetchData = async (params:{}) => {
-    // try {
-    //     // 发送查询请求的逻辑
-    //     const response = await request<{ data: ReturnItem[] }>('', params);
-    
-    //     return response; // 返回实际的数据
-    //   } catch (error) {
-        // console.error('数据请求失败：', error);
+export const fetchData = async (params:{page:1,pageSize:10,categoryName?:'',categoryStyleName?:''}) => {
+    try {
+        // 发送查询请求的逻辑
+        const response = await request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/list',params,'POST'
+        );
+      console.log(response,'返回结果',params)
+        return response; // 返回实际的数据
+      } catch (error) {
+        console.error('数据请求失败：', error);
         // 返回一个默认的数据作为备用
-        const tableListDataSource: ReturnItem[] = [];
-        for (let i = 0; i < 100; i += 1) {
-          tableListDataSource.push({
-            total: 100,
-            id: i,
-            name: 'AppName',
-            title: 'xxj',
-            url: 'addwas',
-            updated_at: Date.now() - Math.floor(Math.random() * 100000),
-            created_at: Date.now() - Math.floor(Math.random() * 100000),
-            style: i % 2 === 1 ? '很长很长很长很长很长很长很长的文字要展示但是要留下尾巴' : '简短备注文案',
-          });
-        }
-        return Promise.resolve({
-              data: tableListDataSource,
-              success: true,
-              total:100
-            })
-//   }
+       
+  }
 }
 
-  export const fetchTitle=async():Promise<[]>=>{
-    console.log(fetchTitle)
-    const res=await request('')
-    return res
+  export const fetchTitle=async(params={})=>{
+    
+try{
+  const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/website/category/list',params,'GET')
+  console.log(res,'类目配置')
+  return res
+}catch(error){
+  console.error('类目数据请求失败：', error);
+
+}
   }
-const apiGetUser = (params: {userid: number}) => request<{nickname: string}>('/api/getuser', params)

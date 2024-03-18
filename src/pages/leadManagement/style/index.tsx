@@ -1,10 +1,10 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@poizon-design/pro-components';
-import { ProTable, TableDropdown } from '@poizon-design/pro-components';
+import type { ActionType, ProColumns } from '@poizon-design/pro-table';
+import { ProTable, TableDropdown } from '@poizon-design/pro-table';
 import { Button, Checkbox,Input, Modal, Form,Select} from 'poizon-design';
 import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem} from './service/interface'
-import { ProSchemaRenderValueTypeFunction } from '@poizon-design/pro-form/lib/components/SchemaForm'; 
+import { validateInput } from './utils';
 import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
 
 const columns: ProColumns<Item1>[] = [
@@ -16,14 +16,14 @@ const columns: ProColumns<Item1>[] = [
   },
   {
     title: '一级类目',
-    dataIndex: 'title',
+    dataIndex: 'categoryCreator',
     // copyable: true,
     ellipsis: true,
   },
   {
     disable: true,
     title: '风格',
-    dataIndex: 'style',
+    dataIndex: 'categoryStyleName',
     // copyable: true,
     ellipsis: true,
     tip: '过长会自动收缩',
@@ -32,7 +32,7 @@ const columns: ProColumns<Item1>[] = [
   {
     disable: true,
     title: '更新人姓名',
-    dataIndex: 'name',
+    dataIndex: 'categoryOperator',
     search: false,
     renderFormItem: (_, { defaultRender }) => {
       return defaultRender(_);
@@ -41,14 +41,14 @@ const columns: ProColumns<Item1>[] = [
   {
     title: '更新时间',
     key: 'showTime',
-    dataIndex: 'updated_at',
+    dataIndex: 'modifyTime',
     valueType: 'dateTime',
     sorter: true,
     hideInSearch: true,
   },
   {
     title: '创建时间',
-    dataIndex: 'created_at',
+    dataIndex: 'createTime',
     valueType: 'dateRange',
     hideInTable: true,
     search: {
@@ -81,26 +81,12 @@ const columns: ProColumns<Item1>[] = [
   
   },
 ];
-// const tableListDataSource: ReturnItem[] = [];
-// for (let i = 0; i < 100; i += 1) {
-//   tableListDataSource.push({
-//     total:100,
-//     id: i,
-//    name: 'AppName',
-//     title: 'xxj',
-//     url: 'addwas',
-//     updated_at: Date.now() - Math.floor(Math.random() * 100000),
-//     created_at: Date.now() - Math.floor(Math.random() * 100000),
-//     style: i % 2 === 1 ? '很长很长很长很长很长很长很长的文字要展示但是要留下尾巴' : '简短备注文案',
-//   });
-// }
-
 
 
 
 export default () => {
   const actionRef = useRef<ActionType>();
-  const [options,setoptions]=useState(['item1','item2'])
+  const [options,setoptions]=useState([])
   const [visiabel,setvisiable]=useState(false)
   const{Option}=Select
  
@@ -126,7 +112,7 @@ export default () => {
   useEffect(  ()=>{
     const fetchData = async () => {
       const data = await fetchTitle();
-      // setoptions(data ||[]);
+      setoptions(data);
     };
   
     fetchData();
@@ -139,7 +125,7 @@ export default () => {
       columns={columns}
       actionRef={actionRef}
       cardBordered
-      request={(params={total:100},sort,filter)=>{
+      request={(params={},sort,filter)=>{
         return fetchData(params)
       }
       }
@@ -167,7 +153,6 @@ export default () => {
           if (type === 'get') {
             return {
               ...values,
-              created_at: [values.startTime, values.endTime],
             };
           }
           return values;
@@ -199,11 +184,11 @@ export default () => {
               >
               <Form.Item
                 label="类目名称"
-                name="title"
+                name="categoryCreator"
               >
                 <Select>
           {options.map(option => (
-            <Option key={option} value={option}>{option}</Option>
+            <Option key={option.id} value={option.name}>{option.name}</Option>
           ))}
         </Select>
 
@@ -211,7 +196,11 @@ export default () => {
 
               <Form.Item
                 label="风格"
-                name="style"
+                name="categoryStyleName"
+                rules={[
+                  { required: true },
+                  { validator: validateInput } // 自定义校验规则
+                ]}
               >
                 <Input />
               </Form.Item>

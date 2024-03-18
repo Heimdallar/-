@@ -4,7 +4,7 @@
  */
  interface PageRequest {
     /** 页码 */
-    pageNum: number;
+    page: number;
     /** 条数 */
     pageSize: number;
   }
@@ -19,17 +19,17 @@
   type Status = 'draft' | 'wait' | 'success' | 'fail';
   export type Item1 = PageRequest&{
     id:number
-   title:string;
-   style:string;
-   name:string;
-   updated_at:number;
+    categoryCreator:string;
+   categoryStyleName:string;
+   categoryOperator:string;
+   modifyTime:Date;
   };
   export type ReturnItem=PageReply&{
-    url: string;
+    
     id: number;
-    title: string;//一级类目
-      name: string;//更新人姓名
-    style: string;//风格
-    created_at:number;//创建时间
-    updated_at: number;//更新时间
+    categoryCreator: string;//一级类目
+    categoryOperator: string;//更新人姓名
+      categoryStyleName: string;//风格
+      createTime:Date;//创建时间
+    modifyTime: Date;//更新时间
   }
