@@ -1,11 +1,13 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@poizon-design/pro-table';
 import { ProTable, TableDropdown } from '@poizon-design/pro-table';
-import { Button, Checkbox,Input, Modal, Form,Select} from 'poizon-design';
+import { Button, Checkbox,Input, Modal, Form,Select, message} from 'poizon-design';
 import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem,optionItem} from './service/interface'
-import { validateInput } from './utils';
+import { validateInput, validateInput2} from './utils';
 import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
+
+
 
 const columns: ProColumns<Item1>[] = [
   {
@@ -29,7 +31,15 @@ const columns: ProColumns<Item1>[] = [
     // copyable: true,
     ellipsis: true,
     tip: '过长会自动收缩',
-    
+    key:'categoryStyleName',
+    formItemProps: {
+      rules: [
+        {
+          validator: validateInput
+        },
+      ],
+    },
+    render:(text,record)=>(record.categoryStyleName.join(',')),
   },
   {
     disable: true,
@@ -66,22 +76,46 @@ const columns: ProColumns<Item1>[] = [
     ],
   
   },
+  // {
+  //   title: '操作',
+  //   key: 'option',
+  //   width:'150px',
+  //   valueType:'option',
+  //   renderFormItem: (text, record,_,action) => (
+  //     <a
+  //     key={record.value}
+  //       onClick={() => {
+
+  //         console.log('click')
+  //         action?.startEditable(record.value)
+  //       }}
+  //     >
+  //       编辑
+  //     </a>
+  //   ),
+  // },
 ];
-
-
 
 export default () => {
   const actionRef = useRef<ActionType>();
+  const formRef =useRef(null)
   const [options,setoptions]=useState<optionItem[]>([])
   const [visiabel,setvisiable]=useState(false)
+  const [visiabel2,setvisiable2]=useState(false)
+  const [selectedRecord,setSelectedRecord]=useState(null)
   const [pagenum,setpagenum]=useState(10)
   const{Option}=Select
  
+
+  
   const showModal = () => {
     setvisiable(true);
    
   };
-  
+  const showModal2 = () => {
+    setvisiable2(true);
+   
+  };
 
   
   const onFinish = async(values: any) => {
@@ -95,6 +129,9 @@ export default () => {
     setvisiable(false)
   };
   const cancelEditable=()=>{
+    setvisiable(false)
+  }
+  const cancelEditable2=()=>{
     setvisiable(false)
   }
   useEffect(  ()=>{
@@ -120,6 +157,7 @@ export default () => {
   
       editable={{
         type: 'multiple',
+        
         onSave:(key,row,originRow)=>(edititem({id:row.id,categoryName:row.categoryName,categoryStyleName:row.categoryStyleName})),
         onDelete:(key,row)=>(deleteitem({id:row.id}))
       }}
@@ -134,10 +172,6 @@ export default () => {
       rowKey="id"
       search={{
         labelWidth: 'auto',
-          // optionRender(searchConfig, props, dom) {
-          //  return [ <Button key="clear" onClick={e=>{actionRef.current?.reset }}>重置</Button>,dom[1]]
-          // },
-
       }}
       
       options={false}
@@ -210,8 +244,6 @@ export default () => {
                   
                         </Modal>
 
- 
-         
    </>
   );
 };
