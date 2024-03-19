@@ -1,7 +1,7 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@poizon-design/pro-table';
 import { ProTable, TableDropdown } from '@poizon-design/pro-table';
-import { Button, Checkbox,Input, Modal, Form,Select, message} from 'poizon-design';
+import { Button, Checkbox,Input, Modal, Form,Select, message, Space, Tag} from 'poizon-design';
 import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem,optionItem} from './service/interface'
 import { validateInput, validateInput2} from './utils';
@@ -31,15 +31,27 @@ const columns: ProColumns<Item1>[] = [
     // copyable: true,
     ellipsis: true,
     tip: '过长会自动收缩',
-    key:'categoryStyleName',
     formItemProps: {
       rules: [
         {
-          validator: validateInput
+          required:true,
+          validator: validateInput2,
+          
         },
       ],
     },
-    render:(text,record)=>(record.categoryStyleName.join(',')),
+    
+    // render:(text,record)=>{
+    //   if (!text) return '--'
+    //   const styleList = record.categoryStyleName// ?.join(',').toString()
+      // return (
+      //   styleList?.map((item: string) => 
+      //     <Space key={item}>
+      //       <Tag>{item || '--'}</Tag>
+      //     </Space>
+      //   )
+      // )
+    // }
   },
   {
     disable: true,
@@ -214,6 +226,7 @@ export default () => {
               <Form.Item
                 label="类目名称"
                 name="categoryName"
+                rules={[{ required: true, message: '请选择一级类目名称' }]}
               >
                 <Select>
           {options?.map(option => (
@@ -228,7 +241,7 @@ export default () => {
                 name="categoryStyleName"
                 rules={[
                   { required: true },
-                  { validator: validateInput } // 自定义校验规则
+                  { validator: validateInput2 } // 自定义校验规则
                 ]}
               >
                 <Input />
