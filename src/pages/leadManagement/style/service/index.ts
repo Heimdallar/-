@@ -83,25 +83,3 @@ try{
 }
   }
 
-
-  export const fetchTitle2=async(params={})=>{
-    
-    try{
-      const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/website/category/list',params,'GET')
-      console.log(res,'xuanxiangka')
-      const showtitle=res.map((item:any)=>{
-        return {
-          key:item.id,
-          name:item.name
-        }
-      })
-      const data=[]
-      res.forEach((element: { name: any; }) => {
-        data.push(element.name)
-      });
-      return showtitle
-    }catch(error){
-      console.error('类目数据请求失败：', error);
-    
-    }
-      }
