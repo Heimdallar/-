@@ -5,7 +5,7 @@ import { Button, Checkbox,Input, Modal, Form,Select} from 'poizon-design';
 import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem,optionItem} from './service/interface'
 import { validateInput } from './utils';
-import { addnewitem, deleteitem, edititem, fetchData, fetchTitle, fetchTitle2 } from './service';
+import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
 
 const columns: ProColumns<Item1>[] = [
   {
@@ -19,11 +19,8 @@ const columns: ProColumns<Item1>[] = [
   {
     title: '一级类目',
     dataIndex: 'categoryName',
-    // copyable: true,
     ellipsis: true,
-    // valueType:'select',
-    // request:fetchTitle2,
-    // render:
+    editable:false
   },
   {
     disable: true,
@@ -47,30 +44,15 @@ const columns: ProColumns<Item1>[] = [
     key: 'modifyTime',
     dataIndex: 'modifyTime',
     valueType: 'dateTime',
-    sorter: true,
     hideInSearch: true,
     readonly:true,
     editable:false
   },
-  // {
-  //   title: '创建时间',
-  //   dataIndex: 'createTime',
-  //   valueType: 'dateRange',
-  //   hideInTable: true,
-  //   search: {
-  //     transform: (value) => {
-  //       return {
-  //         startTime: value[0],
-  //         endTime: value[1],
-  //       };
-  //     },
-  //   },
-  // },
   {
     title: '操作',
     valueType: 'option',
     key: 'option',
-    
+    width:'150px',
     render: (text, record, _, action) => [
       <a
         key="editable"
@@ -81,9 +63,6 @@ const columns: ProColumns<Item1>[] = [
       >
         编辑
       </a>,
-      // <a key='delete' onClick={()=>{
-      //     deleteitem({id:record.id})
-      // }}>删除</a>
     ],
   
   },
@@ -100,14 +79,15 @@ export default () => {
  
   const showModal = () => {
     setvisiable(true);
+   
   };
   
 
   
-  const onFinish = (values: any) => {
-    console.log('onfinish')
-    addnewitem(values)
+  const onFinish = async(values: any) => {
+   await addnewitem(values)
     setvisiable(false)
+    actionRef.current?.reload()
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -140,7 +120,6 @@ export default () => {
   
       editable={{
         type: 'multiple',
-        
         onSave:(key,row,originRow)=>(edititem({id:row.id,categoryName:row.categoryName,categoryStyleName:row.categoryStyleName})),
         onDelete:(key,row)=>(deleteitem({id:row.id}))
       }}
@@ -148,9 +127,10 @@ export default () => {
         persistenceKey: 'pro-table-singe-demos',
         persistenceType: 'localStorage',
         onChange(value) {
-          console.log('value: ', value);
+          
         },
       }}
+
       rowKey="id"
       search={{
         labelWidth: 'auto',
@@ -184,6 +164,7 @@ export default () => {
         </Button>,
         
       ]}
+    
     />
          <Modal title="新增类目风格" visible={visiabel}  	footer={null} onCancel={cancelEditable}>
          <Form
@@ -220,7 +201,7 @@ export default () => {
               </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 16, span: 16 }}>
-                      <Button type="primary" htmlType="submit">
+                      <Button type="primary" htmlType="submit" >
                         提交
                       </Button>
                       <Button onClick={cancelEditable}> 取消</Button>
@@ -228,6 +209,8 @@ export default () => {
                         </Form>
                   
                         </Modal>
+
+ 
          
    </>
   );
