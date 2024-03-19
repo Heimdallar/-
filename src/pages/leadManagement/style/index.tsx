@@ -3,22 +3,27 @@ import type { ActionType, ProColumns } from '@poizon-design/pro-table';
 import { ProTable, TableDropdown } from '@poizon-design/pro-table';
 import { Button, Checkbox,Input, Modal, Form,Select} from 'poizon-design';
 import { useRef, useState ,useEffect} from 'react';
-import {Item1,ReturnItem} from './service/interface'
+import {Item1,ReturnItem,optionItem} from './service/interface'
 import { validateInput } from './utils';
-import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
+import { addnewitem, deleteitem, edititem, fetchData, fetchTitle, fetchTitle2 } from './service';
 
 const columns: ProColumns<Item1>[] = [
   {
-    dataIndex: 'index',
+    dataIndex: 'id',
     title:'序号',
     valueType: 'indexBorder',
     width: 60,
+    readonly:true,
+    editable:false
   },
   {
     title: '一级类目',
-    dataIndex: 'categoryCreator',
+    dataIndex: 'categoryName',
     // copyable: true,
     ellipsis: true,
+    // valueType:'select',
+    // request:fetchTitle2,
+    // render:
   },
   {
     disable: true,
@@ -33,33 +38,34 @@ const columns: ProColumns<Item1>[] = [
     disable: true,
     title: '更新人姓名',
     dataIndex: 'categoryOperator',
-    search: false,
-    renderFormItem: (_, { defaultRender }) => {
-      return defaultRender(_);
-    },
+    hideInSearch:true,
+    readonly:true,
+    editable:false
   },
   {
     title: '更新时间',
-    key: 'showTime',
+    key: 'modifyTime',
     dataIndex: 'modifyTime',
     valueType: 'dateTime',
     sorter: true,
     hideInSearch: true,
+    readonly:true,
+    editable:false
   },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    valueType: 'dateRange',
-    hideInTable: true,
-    search: {
-      transform: (value) => {
-        return {
-          startTime: value[0],
-          endTime: value[1],
-        };
-      },
-    },
-  },
+  // {
+  //   title: '创建时间',
+  //   dataIndex: 'createTime',
+  //   valueType: 'dateRange',
+  //   hideInTable: true,
+  //   search: {
+  //     transform: (value) => {
+  //       return {
+  //         startTime: value[0],
+  //         endTime: value[1],
+  //       };
+  //     },
+  //   },
+  // },
   {
     title: '操作',
     valueType: 'option',
@@ -69,14 +75,15 @@ const columns: ProColumns<Item1>[] = [
       <a
         key="editable"
         onClick={() => {
+          console.log('click',record)
           action?.startEditable?.(record.id);
         }}
       >
         编辑
       </a>,
-      <a key='delete' onClick={()=>{
-        action?.cancelEditable
-      }}>取消</a>
+      // <a key='delete' onClick={()=>{
+      //     deleteitem({id:record.id})
+      // }}>删除</a>
     ],
   
   },
@@ -86,8 +93,9 @@ const columns: ProColumns<Item1>[] = [
 
 export default () => {
   const actionRef = useRef<ActionType>();
-  const [options,setoptions]=useState([])
+  const [options,setoptions]=useState<optionItem[]>([])
   const [visiabel,setvisiable]=useState(false)
+  const [pagenum,setpagenum]=useState(10)
   const{Option}=Select
  
   const showModal = () => {
@@ -103,7 +111,7 @@ export default () => {
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+    alert('添加信息失败!');
     setvisiable(false)
   };
   const cancelEditable=()=>{
@@ -125,15 +133,16 @@ export default () => {
       columns={columns}
       actionRef={actionRef}
       cardBordered
-      request={(params={},sort,filter)=>{
+      request={(params={page:1,pageSize:pagenum,categoryName:'',categoryStyleName:['']},sort,filter)=>{
         return fetchData(params)
       }
       }
   
       editable={{
         type: 'multiple',
-        onSave:(key,row,originRow)=>(edititem(row)),
-        onDelete:(key,row)=>(deleteitem(row))
+        
+        onSave:(key,row,originRow)=>(edititem({id:row.id,categoryName:row.categoryName,categoryStyleName:row.categoryStyleName})),
+        onDelete:(key,row)=>(deleteitem({id:row.id}))
       }}
       columnsState={{
         persistenceKey: 'pro-table-singe-demos',
@@ -145,7 +154,12 @@ export default () => {
       rowKey="id"
       search={{
         labelWidth: 'auto',
+          // optionRender(searchConfig, props, dom) {
+          //  return [ <Button key="clear" onClick={e=>{actionRef.current?.reset }}>重置</Button>,dom[1]]
+          // },
+
       }}
+      
       options={false}
       form={{
         // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
@@ -160,7 +174,7 @@ export default () => {
       }}
       pagination={{
         pageSize: 10,
-        onChange: (page) => console.log(page),
+        onChange: (page) => (setpagenum(page)),
       }}
       dateFormatter="string"
       headerTitle="类目风格配置"
@@ -184,10 +198,10 @@ export default () => {
               >
               <Form.Item
                 label="类目名称"
-                name="categoryCreator"
+                name="categoryName"
               >
                 <Select>
-          {options.map(option => (
+          {options?.map(option => (
             <Option key={option.id} value={option.name}>{option.name}</Option>
           ))}
         </Select>
