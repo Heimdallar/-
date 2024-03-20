@@ -43,7 +43,7 @@ export const fetchData = async (params:FetchDataParams) => {
         // 发送查询请求的逻辑
         const response = await request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/list',params,'POST'
         );
-      console.log(response.contents,'返回结果',params)
+      // console.log(response.contents,'返回结果',params)
       const showdata=response.contents?.map((item:any)=>{
         return <ReturnItem>{
           id: item.id,
@@ -70,12 +70,12 @@ export const fetchData = async (params:FetchDataParams) => {
         try{
           const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/website/category/list',params,'GET')
           // console.log(res,'类目配置')
-          const showtitle=res.map((item:any)=>{
-            return {
-              id:item.id,
-              name:item.name
-            }
-          })
+          // const showtitle=res.map((item:any)=>{
+          //   return {
+          //     id:item.id,
+          //     name:item.name
+          //   }
+          // })
           return res
         }catch(error){
           console.error('类目数据请求失败：', error);
