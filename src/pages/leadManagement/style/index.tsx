@@ -5,7 +5,7 @@ import { Button, Checkbox,Input, Modal, Form,Select, message, Space, Tag} from '
 import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem,optionItem} from './service/interface'
 import { validateInput, validateInput2} from './utils';
-import { addnewitem, deleteitem, edititem, fetchData, fetchTitle } from './service';
+import { addnewItem, deleteItem, editItem, fetchData, fetchTitle } from './service';
 
 
 
@@ -40,7 +40,7 @@ const columns: ProColumns<Item1>[] = [
         },
       ],
     },
-    
+
     // render:(text,record)=>{
     //   if (!text) return '--'
     //   const styleList = record.categoryStyleName// ?.join(',').toString()
@@ -88,32 +88,14 @@ const columns: ProColumns<Item1>[] = [
     ],
   
   },
-  // {
-  //   title: '操作',
-  //   key: 'option',
-  //   width:'150px',
-  //   valueType:'option',
-  //   renderFormItem: (text, record,_,action) => (
-  //     <a
-  //     key={record.value}
-  //       onClick={() => {
-
-  //         console.log('click')
-  //         action?.startEditable(record.value)
-  //       }}
-  //     >
-  //       编辑
-  //     </a>
-  //   ),
-  // },
 ];
 
 export default () => {
   const actionRef = useRef<ActionType>();
   const formRef =useRef(null)
   const [options,setoptions]=useState<optionItem[]>([])
-  const [visiabel,setvisiable]=useState(false)
-  const [visiabel2,setvisiable2]=useState(false)
+  const [visiabel,setVisiable]=useState(false)
+  const [visiabel2,setVisiable2]=useState(false)
   const [selectedRecord,setSelectedRecord]=useState(null)
   const [pagenum,setpagenum]=useState(10)
   const{Option}=Select
@@ -121,30 +103,30 @@ export default () => {
 
   
   const showModal = () => {
-    setvisiable(true);
+    setVisiable(true);
    
   };
   const showModal2 = () => {
-    setvisiable2(true);
+    setVisiable2(true);
    
   };
 
   
   const onFinish = async(values: any) => {
-   await addnewitem(values)
-    setvisiable(false)
+   await addnewItem(values)
+    setVisiable(false)
     actionRef.current?.reload()
   };
 
   const onFinishFailed = (errorInfo: any) => {
     alert('添加信息失败!');
-    setvisiable(false)
+    setVisiable(false)
   };
   const cancelEditable=()=>{
-    setvisiable(false)
+    setVisiable(false)
   }
   const cancelEditable2=()=>{
-    setvisiable(false)
+    setVisiable(false)
   }
   useEffect(  ()=>{
     const fetchData = async () => {
@@ -170,15 +152,12 @@ export default () => {
       editable={{
         type: 'multiple',
         
-        onSave:(key,row,originRow)=>(edititem({id:row.id,categoryName:row.categoryName,categoryStyleName:row.categoryStyleName})),
-        onDelete:(key,row)=>(deleteitem({id:row.id}))
+        onSave:(key,row,originRow)=>(editItem({id:row.id,categoryName:row.categoryName,categoryStyleName:row.categoryStyleName})),
+        onDelete:(key,row)=>(deleteItem({id:row.id}))
       }}
       columnsState={{
         persistenceKey: 'pro-table-singe-demos',
         persistenceType: 'localStorage',
-        onChange(value) {
-          
-        },
       }}
 
       rowKey="id"

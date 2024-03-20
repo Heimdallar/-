@@ -1,13 +1,13 @@
 import { proRequest as request  }from '@/utils/request';
 import { Item1, ReturnItem,FetchDataParams } from './interface';
 
-export const edititem=async(params:{id?:string,categoryName?:string,categoryStyleName?:string[],editorName?:string;
+export const editItem=async(params:{id?:string,categoryName?:string,categoryStyleName?:string[],editorName?:string;
 })=>{
     try{
       const res= await  request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/addOrUpdate',
        params
       )
-      console.log('编辑请求发送',params)
+      // console.log('编辑请求发送',params)
       return(
           res
       )
@@ -17,22 +17,22 @@ export const edititem=async(params:{id?:string,categoryName?:string,categoryStyl
     }
     
 }
-export const deleteitem=async(params:{id:string})=>{
+export const deleteItem=async(params:{id:string})=>{
     
     try{
       const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/delete',params)
-      console.log('删除请求发送',params)
+      // console.log('删除请求发送',params)
       return res
     }catch(e){
       console.log('删除失败',e)
     }
 }
 
-export const addnewitem= async(params:{ categoryName:string,categoryStyleName:string[],editorName?:string})=>{
+export const addnewItem= async(params:{ categoryName:string,categoryStyleName:string[],editorName?:string})=>{
     try{
 
-    const res=  edititem(params)
-      console.log('新建请求',res)
+    const res=  editItem(params)
+      // console.log('新建请求',res)
       return res
     }catch(e){console.log('新建失败' ,e)}
    
@@ -67,19 +67,19 @@ export const fetchData = async (params:FetchDataParams) => {
 
   export const fetchTitle=async(params={})=>{
     
-try{
-  const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/website/category/list',params,'GET')
-  console.log(res,'类目配置')
-  const showtitle=res.map((item:any)=>{
-    return {
-      id:item.id,
-      name:item.name
-    }
-  })
-  return res
-}catch(error){
-  console.error('类目数据请求失败：', error);
+        try{
+          const res=await request('/youthcamp-mer-customer/g4/merchant/customer/brand/website/category/list',params,'GET')
+          // console.log(res,'类目配置')
+          const showtitle=res.map((item:any)=>{
+            return {
+              id:item.id,
+              name:item.name
+            }
+          })
+          return res
+        }catch(error){
+          console.error('类目数据请求失败：', error);
 
-}
+        }
   }
 
