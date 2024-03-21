@@ -202,7 +202,7 @@ const StarkUpload: FC<ProUploadProps> = (props) => {
   };
   const uploadButton = (
     <div>
-      <PlusOutlined />
+      <PlusOutlined rev={undefined} />
       <div style={{ marginTop: 8 }}>{uploadPanelText || 'Upload'}</div>
     </div>
   );
@@ -273,7 +273,7 @@ const StarkUpload: FC<ProUploadProps> = (props) => {
         {customBtn ? customButton : null}
         {((!resProps.listType && !customBtn) || resProps.listType === 'text') && !hideUploadButton
           ? children || (
-              <Button icon={uploading ? <LoadingOutlined /> : <UploadOutlined />}>
+              <Button icon={uploading ? <LoadingOutlined rev={undefined} /> : <UploadOutlined rev={undefined} />}>
                 {uploadTxt}
               </Button>
             )
