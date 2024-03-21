@@ -143,7 +143,7 @@ export function ModalDetail(props: DetailApp) {
           <Tag color="green">已完成</Tag>
         </Space>
         <Space>
-          <FormOutlined style={{ color: '#01C2C3' }} />
+          <FormOutlined style={{ color: '#01C2C3' }} rev={undefined} />
           <Button className="title-wrap-extend-btn" type="link">
             关联操作
           </Button>

@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 12px;
+    background-color: #fff;
+
+    >.header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        >.title {
+            margin-bottom: 12px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    }
+
+    >.list {
+        display: flex;
+        flex-direction: column;
+
+        .item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 12px;
+
+            .lable {
+                width: 70px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .processBar {
+                display: flex;
+                flex: 1;
+                flex-wrap: nowrap;
+                align-items: center;
+                height: 36px;
+
+                .process {
+                    height: 36px;
+                    background-color: rgb(40, 224, 224);
+                }
+
+                .achievedAmount {
+                    width: 90px;
+                    padding-left: 12px;
+                    color: #7f7f8e;
+                }
+            }
+        }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+}

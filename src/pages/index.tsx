@@ -6,7 +6,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/module-tables/page-search-table', { replace: true });
+    navigate('/homePage', { replace: true });
   }, [navigate]);
 
   return (
