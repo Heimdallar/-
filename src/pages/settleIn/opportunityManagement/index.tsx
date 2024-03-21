@@ -8,12 +8,13 @@ import { PaginationType } from 'poizon-design/lib/transfer/interface';
 import ProUpload, { UploadScene } from '@/components/ProUpload/index';
 import { defaultPagiSetting } from '@/config';
 import { ConfigItem, OpportunityItem } from './interface';
-// import OpportunityModal from './components/opportunityModal';
-// import { getContact1Url } from './util';
+import OpportunityModal from '../opportunityManagement/componenets/opportunityModal';
+import { getContact1Url } from './utils';
 import styles from './index.less';
-// import BrandLabelModal from './components/brandLabelModal'
-// import StoreLabelModal from './components/storeLabelModal'
+import BrandLabelModal from './componenets/brandLabelModal'
+import StoreLabelModal from './componenets/storeLabelModal'
 import columns from './column';
+import { getBrandConfig } from './service';
 const OpportunityManagement: React.FC<any> = () => {
   const [opportunityShow, SetOpportunityShow] = useState(false);
   const [configShow, setConfigShow] = useState(false);
@@ -49,8 +50,8 @@ const OpportunityManagement: React.FC<any> = () => {
         rowKey="id"
         pagination={{ ...pageInfo }}
         onChange={(params) => {
-        //   const { current, ...rest } = params;
-        //   setPageInfo({ ...defaultPagiSetting, ...rest });
+          const { current } = params;
+          setPageInfo({ ...defaultPagiSetting });
         }}
         search={{
           labelWidth: 'auto',
@@ -105,8 +106,8 @@ const OpportunityManagement: React.FC<any> = () => {
             //     }
             //   }}
             />
-            {/* <BrandLabelModal />
-            <StoreLabelModal /> */}
+            <BrandLabelModal />
+            <StoreLabelModal />
             <Button
               onClick={() => {
                 SetOpportunityShow(true);
@@ -117,19 +118,20 @@ const OpportunityManagement: React.FC<any> = () => {
               新增品牌
             </Button>
             <Button
-            //   onClick={
-            //     async () => {
-            //     const resp: any = await getBrandConfig({});
-            //     if (isEmpty(resp)) {
-            //       setConfigShow(true);
-            //       return;
-            //     }
-            //     const { contactUrl1, contactUrl2, ...rest } = resp;
-            //     const contact1 = contactUrl1 ? [{ url: contactUrl1 }] : [];
-            //     const contact2 = contactUrl2 ? [{ url: contactUrl2 }] : [];
-            //     setConfigValues({ contact1, contact2, ...rest });
-            //     setConfigShow(true);
-            //   }}
+              onClick={
+                async () => {
+                const resp: any = await getBrandConfig({});
+                if (isEmpty(resp)) {
+                  setConfigShow(true);
+                  return;
+                }
+                const { contactUrl1, contactUrl2, ...rest } = resp;
+                const contact1 = contactUrl1 ? [{ url: contactUrl1 }] : [];
+                const contact2 = contactUrl2 ? [{ url: contactUrl2 }] : [];
+                setConfigValues({ contact1, contact2, ...rest });
+                setConfigShow(true);
+              }
+            }
               type="primary"
             >
               展示配置
@@ -207,7 +209,7 @@ const OpportunityManagement: React.FC<any> = () => {
             maxCount={1}
             tips={
               <span className={styles.uploadDesc}>
-                请上传联系方式，文件格式限制为png/jpg，不可超过10M
+                请上传联系方式,文件格式限制为png/jpg,不可超过10M
               </span>
             }
           />
@@ -222,13 +224,13 @@ const OpportunityManagement: React.FC<any> = () => {
             maxCount={1}
             tips={
               <span className={styles.uploadDesc}>
-                请上传联系方式，文件格式限制为png/jpg，不可超过10M
+                请上传联系方式,文件格式限制为png/jpg,不可超过10M
               </span>
             }
           />
         </ProForm.Item>
       </ModalForm>
-      {/* {opportunityShow && (
+      {opportunityShow && (
         <OpportunityModal
           opportunityShow={opportunityShow}
           row={row}
@@ -236,7 +238,7 @@ const OpportunityManagement: React.FC<any> = () => {
           setRow={setRow}
           SetOpportunityShow={SetOpportunityShow}
         />
-      )} */}
+      )}
     </div>
   );
 };
