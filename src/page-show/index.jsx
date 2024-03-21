@@ -33,7 +33,7 @@ const Show = () => {
         立即报名
       </Button>
       <Modal
-      className='modal'
+        className='modal'
         title="请填写表单"
         visible={visible}
         onOk={handleOk}

@@ -19,29 +19,32 @@ interface Activity {
 const Pageform = (props:any) => {
   const { onFormSubmit, formref }=props
   const { Option } = Select;
+  const getUniqueCategories = (activities: any[]) => {
+    return activities.filter((value, index, self) => self.findIndex(a => a.catogories === value.catogories) === index);
+  };
 
   const [ activities, setActivities ] = useState<Activity[]>([]);
 
   const [formData, setFormData] = useState({
     activityId:'',
-    userId:'',
-    activityInvitingCode:'',
-    emailAddress:'',
     companyName: '',
-    brandName: '',
-    categoryNames: '',
-    contactPerson: '',
-    phoneCall:'',
-    certificateType:'',
-    brandType:'',
-    sellWays:'',
-    shopName:'',
-    shopLink:'',
+    userId:'',
+    categoryName: '',
+    activityInvitingCode:'',
     productNum:'',
     productValue:'',
     companyValue:'',
+    emailAddress:'',
+    phoneCall:'',
+    sellWays:'',
+    certificateType:'',
+    contactPerson: '',
+    brandName: '',
     fansRed:'',
-    fansTiktok:'',
+    fansTikTok:'',
+    brandType:'',
+    shopName:'',
+    shopLink:'',
   });
 
   useEffect(() => {
@@ -57,41 +60,32 @@ const Pageform = (props:any) => {
         console.log(v, 'vvv')
       }}
       autoComplete="off">
-      
-      {/* <Form.Item name="activityId" label="活动ID" rules={[{required: true,message: '请输入活动ID'}]}> */}
-        {/* <Input className={styles.ContactInfo} value={formData.activityId} placeholder='请输入活动ID'/> */}
-        {/* <Select value={formData.activityId} placeholder="请输入活动ID" >
-          {activities.map((activity) => (<Option value={activity.id}>{activity.id}</Option>))}
-        </Select> */}
-      {/* </Form.Item> */}
-
-      {/* <Form.Item name="userId" label="用户ID" rules={[{required: true,message: '请输入用户ID'}]}> */}
-        {/* <Input className={styles.ContactInfo} value={formData.userId} placeholder='请输入用户ID'/> */}
-        {/* <Select value={formData.categoryNames} placeholder="请选择用户ID" >
-          <Option value='1'>Odegie_Carol22</Option>
-        </Select> */}
-      {/* </Form.Item> */}
-
-      {/* <Form.Item name="activityInvitingCode" label="邀请码" rules={[{required: true,message: '请输入邀请码'}]}> */}
-        {/* <Input className={styles.ContactInfo} value={formData.activityInvitingCode} placeholder='请输入邀请码'/> */}
-        {/* <Select value={formData.categoryNames} placeholder="请选择邀请码" >
-          <Option value='1'>1013117214530529</Option>
-        </Select> */}
-      {/* </Form.Item> */}
 
       <Form.Item name="companyName" label="公司名称" rules={[{required: true,message: '请输入贵公司名称'}]}>
         <Input placeholder='请输入贵公司名称' value={formData.companyName} showCount maxLength={50} />
       </Form.Item>
 
       <Form.Item name="brandName" label="主营品牌" rules={[{required: true,message: '主营品牌'}]}>
-        <Input placeholder='请选择主营品牌'value={formData.brandName} />
+        <Select value={formData.brandName} placeholder="请选择主营品牌"  allowClear>
+          <Option value='李宁'>李宁</Option>
+          <Option value='Nike'>Nike</Option>
+          <Option value="LOUIS VUITTON">LOUIS VUITTON</Option>
+          <Option value="CHANEL">CHANEL</Option>
+          <Option value="TIFFANY & CO.">TIFFANY & CO.</Option>
+          <Option value='HERMES'>HERMES</Option>
+          <Option value='Burberry'>Burberry</Option>
+          <Option value="Dior">Dior</Option>
+          <Option value="MICHAEL KORS">MICHAEL KORS</Option>
+          <Option value="FENDI">FENDI</Option>
+        </Select>
       </Form.Item>
       
-      <Form.Item name="categoryNames" label="主营类目" rules={[{ required: true }]}>
-        <Select value={formData.categoryNames} placeholder="请选择" >
-          <Option value='1'>潮流</Option>
-          {/* <Option value="2">类目2</Option>
-          <Option value="3">类目3</Option> */}
+      <Form.Item name="categoryName" label="主营类目" rules={[{ required: true }]}>
+        <Select value={formData.categoryName} placeholder="请选择" >
+        {/* {activities.map((activity) => (<Option key={activity.id} value={activity.catogories}>{activity.catogories}</Option>))} */}
+        {getUniqueCategories(activities).map((activity) => (
+          <Option key={activity.id} value={activity.catogories}>{activity.catogories}</Option>
+        ))}
         </Select>
       </Form.Item>
       
@@ -173,10 +167,10 @@ const Pageform = (props:any) => {
         <Input value={formData.fansRed} placeholder='请输入数量' />
       </Form.Item>
 
-      <Form.Item name="fansTiktok" label="抖音官方账号粉丝数(人)" rules={[{required: true,message: '请输入'}]}>
-        <Input value={formData.fansTiktok} placeholder='请输入数量' />
+      <Form.Item name="fansTikTok" label="抖音官方账号粉丝数(人)" rules={[{required: true,message: '请输入'}]}>
+        <Input value={formData.fansTikTok} placeholder='请输入数量' />
       </Form.Item>
-
+          
       <Form.Item name="rememberMe" valuePropName="checked" wrapperCol={{offset: 8,span: 16}}>
         <Checkbox> 记住我</Checkbox>
       </Form.Item>

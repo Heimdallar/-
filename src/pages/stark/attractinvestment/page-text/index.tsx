@@ -11,8 +11,9 @@ import { Tag } from 'poizon-design';
 import  styles  from './index.less'
 import React, { useState, useEffect} from 'react';
 import { Typography } from 'poizon-design';
-import { fetchData, postData } from '../service';
+import { fetchData } from '../service';
 import Pageform from '../page-form';
+import { requestApi } from '@/utils/request';
 
 interface Activity {
     id:number;
@@ -30,10 +31,7 @@ export default function Pageshow() {
     const { Paragraph } = Typography;
     const [ ellipsis ] = React.useState(true);
     const [ loading, setLoading ] = useState(true);
-    // const handleClick = (id: any) =>{
-    //     postData({id})
-    // }
-
+    
     useEffect(() => {
         fetchData({})
             .then(setActivities)
@@ -44,7 +42,6 @@ export default function Pageshow() {
     if (loading) {
         return <div>Loading...</div>
     }
-
 
 //     return (
 //         <div style = {{margin:20}}>
@@ -128,9 +125,9 @@ export default function Pageshow() {
 //     )
 // }        
 
-    const futureActivities = activities.filter(activity => activity.state === 3);
-    const presentActivities = activities.filter(activity => activity.state === 2);
-    const pastActivities = activities.filter(activity => activity.state === 1);
+    const futureActivities = activities.filter(activity => activity.state === 0);
+    const presentActivities = activities.filter(activity => activity.state === 1);
+    const pastActivities = activities.filter(activity => activity.state === 2);
 
     return (
         <div style = {{ margin:20 }}>

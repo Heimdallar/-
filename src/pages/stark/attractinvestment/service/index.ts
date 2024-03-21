@@ -15,22 +15,13 @@ import { proRequest as request } from "@/utils/request";
 
 
 export const fetchData = (params:any) => {
-    return request('/youthcamp-mer-customer/g4/merchant/customer/iea/obtainMeetings', 
-        params
-        ,'GET'
-    );
+    return request('/youthcamp-mer-customer/g4/merchant/customer/iea/obtainMeetings', params, 'GET');
 }
 
-// export const fetchData = (params:any) => {
-//     return request('', 
-//         params
-//         ,'GET'
-//     );
-// }
-
 export const postData = (params:any) => {
-    return request('/youthcamp-mer-customer/g4/merchant/customer/iea/submit',
-        params
-        , 'POST'
-    )
+    return request('/youthcamp-mer-customer/g4/merchant/customer/iea/submit', params, 'POST')
+}
+
+export const fetchFormSubmitData = (params:any) => {
+    return request('/youthcamp-mer-customer/g4/merchant/customer/iea/submit', params, 'GET')
 }
