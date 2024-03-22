@@ -29,7 +29,7 @@ import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 
         width: 140,
         hideInSearch: false,
         renderFormItem: () => {
-          return <CategorySelect isIdValue placeholder="请选择主营类目" />;
+          return <CategorySelect  />;
         },
       },
       {

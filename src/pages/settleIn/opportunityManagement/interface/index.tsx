@@ -1,6 +1,4 @@
 
-
-
 export interface OpportunityItem {
     brandName: string;
     createTime: string;

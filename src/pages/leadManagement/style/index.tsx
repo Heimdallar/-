@@ -6,8 +6,8 @@ import { useRef, useState ,useEffect} from 'react';
 import {Item1,ReturnItem,optionItem} from './service/interface'
 import { validateInput, validateInput2} from './utils';
 import { addnewItem, deleteItem, editItem, fetchData, fetchTitle } from './service';
-
-
+import CategorySelect from '@/components/ProSelect/business/CategorySelect';
+import { FormInstance } from 'poizon-design/es/form/Form';
 
 const columns: ProColumns<Item1>[] = [
   {
@@ -22,7 +22,11 @@ const columns: ProColumns<Item1>[] = [
     title: '一级类目',
     dataIndex: 'categoryName',
     ellipsis: true,
-    editable:false
+    editable:false,
+    renderFormItem: (item,{type,defaultRender,...rest},form)=>{
+      return <CategorySelect placeholder={''} {...rest}></CategorySelect>
+    },
+
   },
   {
     disable: true,
@@ -91,11 +95,12 @@ const columns: ProColumns<Item1>[] = [
 
 export default () => {
   const actionRef = useRef<ActionType>();
-  const formRef =useRef(null)
+  // const formRef =useRef<FormInstance>()
+  const [form ]=Form.useForm<FormInstance>()
   const [options,setoptions]=useState<optionItem[]>([])
   const [visiabel,setVisiable]=useState(false)
   const [visiabel2,setVisiable2]=useState(false)
-  const [selectedRecord,setSelectedRecord]=useState(null)
+  const [selectedRecord,setSelectedRecord]=useState()
   const [pagenum,setpagenum]=useState(10)
   const{Option}=Select
  
@@ -142,12 +147,14 @@ export default () => {
     <ProTable<Item1>
       columns={columns}
       actionRef={actionRef}
+      form={form}
       cardBordered
       request={(params={page:1,pageSize:pagenum,categoryName:'',categoryStyleName:['']},sort,filter)=>{
         return fetchData(params)
       }
       }
   
+    
       editable={{
         type: 'multiple',
         
@@ -160,10 +167,28 @@ export default () => {
       }}
 
       rowKey="id"
+    
       search={{
         labelWidth: 'auto',
+        optionRender: (searchConfig, formProps, dom) => [
+          dom[0],
+          <Button
+          type='primary'
+            key="out"
+            onClick={async () => {
+              const values = searchConfig?.form?.getFieldsValue();
+              // console.log(values);
+              const newvalue=await fetchData({...values,page:1,pageSize:10})
+              setSelectedRecord(newvalue?.data)
+            }}
+          >
+              查询
+          </Button>,
+          
+        ],
       }}
-      
+
+      dataSource={selectedRecord}
       options={false}
       form={{
         // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下

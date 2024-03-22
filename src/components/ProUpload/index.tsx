@@ -270,6 +270,8 @@ const StarkUpload: FC<ProUploadProps> = (props) => {
         beforeUpload={onBeforeUpload}
         onChange={(info) => changeInfo(info)}
       >
+
+        
         {customBtn ? customButton : null}
         {((!resProps.listType && !customBtn) || resProps.listType === 'text') && !hideUploadButton
           ? children || (

@@ -1,57 +1,39 @@
-import React from 'react';
-import { isEmpty } from 'lodash';
-import { ProFieldRequestData } from '@/utils/types';
-import { ProSelectProps } from '../../index';
-import { getUserList } from '../../api';
-import BusinessBasicSelect from '../BussinessBasicSelect';
-// import Style from './index.less';
+import { FC, useEffect, useState } from "react";
+import ProSelect from "../..";
+import { fetchData, fetchTitle } from "@/pages/leadManagement/style/service";
+import { RequestOptionsType } from "@/utils/types";
+import { Select } from "poizon-design";
 
-type UserSelect = {
-  dynamicLoad?: boolean;
-  isShowOutwardCallRobot?: boolean;
-} & ProSelectProps;
-const outwardCallRobotObj = {
-  label: '智能外呼机器人',
-  value: 900000000,
-};
 
-const UserSelect: React.FC<UserSelect> = (props) => {
-  const { className, value, onChange, isShowOutwardCallRobot = false, ...restProps } = props;
-  const dynamicFetchUserList: ProFieldRequestData<string | number> = async (userName) => {
-    const userListByNameRes: any = await getUserList({ userName });
-    if (isEmpty(userListByNameRes) || !userListByNameRes?.username) {
-      return isShowOutwardCallRobot ? [outwardCallRobotObj] : [];
+
+const CategorySelect: React.FC<{
+  /** Value 和 onChange 会被自动注入 */
+  value?: string;
+  placeholder:string,
+  onChange?: (value: string) => void;
+}> = (props) => {
+  const {placeholder}=props
+  const text=!placeholder?'请选择一级类目':placeholder
+  const [innerOptions, setOptions] = useState([]);
+
+  useEffect(() => {
+      const fetchOrderList=async()=>{
+      const data=await fetchTitle()
+      const options=data.map((item)=>{
+        return {
+         label: item.name,
+         value:item.name
+        }
+      })
+      setOptions(options)
+      }
+
+      fetchOrderList()
     }
-    return isShowOutwardCallRobot
-      ? [
-          {
-            label: userListByNameRes.username,
-            value: userListByNameRes.id,
-          },
-          outwardCallRobotObj,
-        ]
-      : [
-          {
-            label: userListByNameRes.username,
-            value: userListByNameRes.id,
-          },
-        ];
-  };
+  , []);
 
-  return (
-    <>
-      <BusinessBasicSelect
-        showSearch
-        allowClear
-        value={value}
-        onChange={onChange}
-        // className={`${Style.CategorySelect} ${className}`}
-        optionFilterProp="label"
-        dynamicLoadRequest={dynamicFetchUserList}
-        {...restProps}
-      />
-    </>
-  );
+  return <Select options={innerOptions} value={props.value} placeholder='请选择一级类目' onChange={props.onChange} />;
 };
 
-export default UserSelect;
+
+export default CategorySelect

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ProFieldStaticRequestData, RequestOptionsType, ProFieldRequestData } from '@/utils/types';
 import ProSelect, { ProSelectProps } from '../../index';
+import { fetchTitle } from '@/pages/leadManagement/style/service';
 
 export type BusinessBasicSelectProps = ProSelectProps & {
   loadAllRequest?: ProFieldStaticRequestData;
@@ -15,14 +16,21 @@ const BusinessBasicSelect: React.FC<BusinessBasicSelectProps> = (props) => {
 
   useEffect(() => {
     if (!dynamicLoad) {
-      fetchBusinessList();
+      fetchData()
     }
   }, [dynamicLoad, again]);
 
-  async function fetchBusinessList() {
-    const nextBusinessInfo = await loadAllRequest?.();
-    setBusinessList(nextBusinessInfo || []);
-  }
+  const fetchData = async () => {
+    const value = await fetchTitle();
+    const options=value?.map((option: { id: any; name: any; }) => (
+        {
+          label:name,
+          value:option.name
+        }
+    ))
+    setBusinessList(options)
+      }
+ 
   const propsWithBusinessData = useMemo(() => {
     if (dynamicLoad) {
       return { request: dynamicLoadRequest, ...fieldProps };

@@ -2,12 +2,10 @@ import ProForm, {
     ModalForm,
     ProFormRadio,
     ProFormSelect,
-    ProFormText,
   } from '@poizon-design/pro-form';
   import { isEmpty } from 'lodash';
   import { Input, message } from 'poizon-design';
   import { useState, useEffect } from 'react';
-  import { useRequest } from 'ahooks';
   import CategorySelect from '@/components/ProSelect/business/CategorySelect';
   import { saveBrand } from '../../service';
   import { IncentiveOptions, QualificationOptions } from '../../interface';
