@@ -8,6 +8,7 @@ import { validateInput, validateInput2} from './utils';
 import { addnewItem, deleteItem, editItem, fetchData, fetchTitle } from './service';
 import CategorySelect from '@/components/ProSelect/business/CategorySelect';
 import { FormInstance } from 'poizon-design/es/form/Form';
+import { defaultPagiSetting } from '@/config';
 
 const columns: ProColumns<Item1>[] = [
   {
@@ -101,7 +102,8 @@ export default () => {
   const [visiabel,setVisiable]=useState(false)
   const [visiabel2,setVisiable2]=useState(false)
   const [selectedRecord,setSelectedRecord]=useState()
-  const [pagenum,setpagenum]=useState(10)
+  const [pageInfo, setPageInfo] = useState(defaultPagiSetting);
+  const [page,setcurrent]=useState(1)
   const{Option}=Select
  
 
@@ -149,12 +151,17 @@ export default () => {
       actionRef={actionRef}
       form={form}
       cardBordered
-      request={(params={page:1,pageSize:pagenum,categoryName:'',categoryStyleName:['']},sort,filter)=>{
-        return fetchData(params)
+      
+      request={(params={},sort,filter)=>{
+        const { current, pageSize } = params;
+        const reqParmas = {
+          page: current,
+          pageSize,
+      };
+        return  fetchData(reqParmas)
       }
       }
-  
-    
+
       editable={{
         type: 'multiple',
         
@@ -175,10 +182,10 @@ export default () => {
           <Button
           type='primary'
             key="out"
-            onClick={async () => {
+            onClick={async (params) => {
               const values = searchConfig?.form?.getFieldsValue();
               // console.log(values);
-              const newvalue=await fetchData({...values,page:1,pageSize:10})
+              const newvalue=await fetchData({...values})
               setSelectedRecord(newvalue?.data)
             }}
           >
@@ -187,7 +194,9 @@ export default () => {
           
         ],
       }}
-
+      pagination={{
+        pageSize: 10,
+      }}
       dataSource={selectedRecord}
       options={false}
       form={{
@@ -201,10 +210,16 @@ export default () => {
           return values;
         },
       }}
-      pagination={{
-        pageSize: 10,
-        onChange: (page) => (setpagenum(page)),
-      }}
+      onPaginationChange={async(current, pageSize) => {
+        // 处理用户修改分页时的逻辑
+        console.log('Current page:', current);
+        console.log('Page size:', pageSize);
+        // 可以在这里重新请求数据
+        const newvalue=await fetchData({page:current,pageSize:pageSize})
+        setSelectedRecord(newvalue?.data)
+    }}
+
+      
       dateFormatter="string"
       headerTitle="类目风格配置"
       toolBarRender={() => [

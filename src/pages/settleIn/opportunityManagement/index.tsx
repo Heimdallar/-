@@ -29,7 +29,7 @@ const OpportunityManagement: React.FC<any> = () => {
 
 
   return (
-    <div data-trackid="071a3cbf0b653dd9-AG4zlO">
+    <div >
       <ProTable<OpportunityItem>
         columns={columns}
         actionRef={actionRef}

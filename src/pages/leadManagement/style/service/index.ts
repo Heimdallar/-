@@ -43,7 +43,7 @@ export const fetchData = async (params:FetchDataParams) => {
         // 发送查询请求的逻辑
         const response = await request('/youthcamp-mer-customer/g4/merchant/customer/brand/category/list',params,'POST'
         );
-      // console.log(response.contents,'返回结果',params)
+      console.log(response.contents,'返回结果',params)
       const showdata=response.contents?.map((item:any)=>{
         return <ReturnItem>{
           id: item.id,
@@ -56,6 +56,7 @@ export const fetchData = async (params:FetchDataParams) => {
       })
         return {
           data:showdata,
+          total:response.total,
           success:true
         }// 返回实际的数据
       } catch (error) {
