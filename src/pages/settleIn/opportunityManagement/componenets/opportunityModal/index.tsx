@@ -107,7 +107,7 @@ import ProForm, {
           name="mainCategoryInfo"
           rules={[{ required: true, message: '请选择主营类目' }]}
         >
-          <CategorySelect isIdValue labelInValue placeholder="请选择主营类目" disabled={isEdit} />
+          <CategorySelect   placeholder="请选择主营类目" disabled={isEdit} />
         </ProForm.Item>
         <ProFormSelect
           name="qualificationType"

@@ -44,17 +44,17 @@ const columns: ProColumns<Item1>[] = [
         },
       ],
     },
-    // render:(text,record)=>{
-    //   if (!text) return '--'
-    //   const styleList = record.categoryStyleName// ?.join(',').toString()
-      // return (
-      //   styleList?.map((item: string) => 
-      //     <Space key={item}>
-      //       <Tag>{item || '--'}</Tag>
-      //     </Space>
-      //   )
-      // )
-    // }
+    render:(text,record)=>{
+      if ( !Array.isArray(record.categoryStyleName)) return record.categoryStyleName
+      else{
+      const styleList = record?.categoryStyleName.join(',')
+      return (
+  
+          <span>{styleList}</span>
+        )
+      
+      }
+    }
   },
   {
     disable: true,
