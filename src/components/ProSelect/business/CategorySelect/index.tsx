@@ -19,7 +19,7 @@ const CategorySelect: React.FC<{
   useEffect(() => {
       const fetchOrderList=async()=>{
       const data=await fetchTitle()
-      const options=data.map((item)=>{
+      const options=data.map((item:any)=>{
         return {
          label: item.name,
          value:item.name

@@ -3,25 +3,42 @@ import * as echarts from 'echarts';
 import { useRequest } from 'ahooks';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'poizon-design';
-
-import { PageModeEnum, TypeEnum, allCategory } from '@/pages/homePage/interface';
+import '../../service';
 import { deleteEmptyParam } from '@/utils/common';
 import styles from './index.less';
+import { fetchAllGetRateMes, fetchSingleGetRate } from '../../service';
 
 interface Props {
-  pageMode: string;
+  page: string;
   categoryId: string | null;
-  queryType: string;
+  query: string;
 }
 
-const GradientRingChart = (props:Props) => {
-  const { pageMode, categoryId, queryType } = props;
+const GradientRingChart = (props: Props) => {
+  const { page, categoryId, query } = props;
 
+  // 图表接口
+  const chartApi = useMemo(() => {
+    if (page === 'single' || query === 'people') {
+      return fetchSingleGetRate;
+    }
+    return fetchAllGetRateMes;
+  }, [page, query]);
 
-  const achievedTotalAmount=100 
- const achievedTotalRate='0.9' 
-  const bizDate='1933/3/9'
-  const  targetTotalAmount=10
+  const { data: chartDataRes } = useRequest(
+    () => {
+      const params = { categoryId: categoryId === 'all' ? '' : categoryId };
+      deleteEmptyParam(params);
+      return chartApi(params);
+    },
+    {
+      refreshDeps: [page, query, categoryId],
+    },
+  );
+
+  const { achievedTotalAmount, achievedTotalRate, bizDate, targetTotalAmount } =
+    chartDataRes?.data || {};
+    console.log('chartDataRes',chartDataRes)
 
   const ref = useRef(null);
 
@@ -101,13 +118,13 @@ const GradientRingChart = (props:Props) => {
   useEffect(() => {
     const myChart = echarts.init(ref.current);
     myChart.setOption(option);
-  }, []);
+  }, [chartDataRes]);
 
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         季度出价目标完成情况
-        <Tooltip title="统计一级类目下，商家首次出价时间在本季，且在同一类目下在当季出价过ABC品牌的国内企业商家">
+        <Tooltip title="统计一级类目下,商家首次出价时间在本季,且在同一类目下在当季出价过ABC品牌的国内企业商家">
           <QuestionCircleOutlined style={{ fontSize: 18, color: '#7f7f8e', marginLeft: 8 }} rev={undefined} />
         </Tooltip>
         {bizDate && <span className={styles.updateTime}>更新于{bizDate}</span>}

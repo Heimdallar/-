@@ -3,49 +3,69 @@ import { Pagination, Radio, Tooltip } from 'poizon-design';
 import { useRequest } from 'ahooks';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import {
-  RankTypeEnum,
+  RankEnum,
   rankTypeList,
-  PageModeEnum,
-  allCategory,
-  TypeEnum,
-} from '@/pages/homePage/interface';
-
+} from '../../interface';
+import'../../service';
 import { deleteEmptyParam } from '@/utils/common';
 import styles from './index.less';
+import { fetchAllAchievedRate, fetchAllAmountRate, fetchSingleAmountRate } from '../../service';
 
 interface Props {
-  pageMode: string;
+  page: string;
   categoryId: string | null;
-  queryType: string;
+  query: string;
 }
 
 const Rank = (props: Props) => {
-  const { pageMode, categoryId, queryType } = props;
-  const [pageNo, setPageNo] = useState(1);
-  const [rankType, setRankType] = useState(RankTypeEnum.按完成度);
+  const { page, categoryId, query } = props;
+  const [pageNo, setpageNo] = useState(1);
+  const [rankType, setRankType] = useState(RankEnum.按完成度);
 
+  const rankApi = useMemo(() => {
+    if (
+      'single' === page ||
+      ('multi' === page && query === 'people')
+    ) {
+      return fetchSingleAmountRate;
+    }
+    if ('multi' === page && rankType === RankEnum.按完成度) {
+      return fetchAllAchievedRate;
+    }
+    return fetchAllAmountRate;
+  }, [page, query, rankType]);
 
-
+  // todo 切换的时候进行请求
+  const { data, run } = useRequest(
+    ({ p } = { p: 1 }) => {
+      const params = {
+        categoryId: categoryId === 'all' ? null : categoryId,
+        pageSize: 10,
+        page: p,
+      };
+      deleteEmptyParam(params);
+      return rankApi(params);
+    },
+    {
+      ready: !!categoryId,
+    },
+  );
 
   useEffect(() => {
-    setPageNo(1);
-  }, [categoryId, rankType, queryType]);
+    setpageNo(1);
+    run({ p: 1 });
+  }, [categoryId, rankType, query]);
 
-  const total = 10
-  const list = [
-    {
-        randIndex:1, 
-        percent:10, 
-        label:3, 
-        value:11451 
-    }
-  ]
+  
+  const { total = 0, data: list = [] } = data?.data || {};
+
+  console.log('rank',list)
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.title}>
-          {PageModeEnum.单类目模式 === pageMode || queryType === TypeEnum.按人员 ? (
+          {'single' === page || query === 'people' ? (
             <Tooltip title="统计商家入驻时填写的邀请人为对应运营，且商家入驻的品牌类目首次出价时间在本季">
               季度商家入驻且出价完成排行
               <QuestionCircleOutlined style={{ fontSize: 18, color: '#7f7f8e', marginLeft: 8 }} rev={undefined} />
@@ -54,13 +74,13 @@ const Rank = (props: Props) => {
             '季度出价目标完成排行'
           )}
         </div>
-        {pageMode !== PageModeEnum.单类目模式 && queryType === TypeEnum.按类目 && (
+        {page !== 'single' && query === 'category' && (
           <Radio.Group
             value={rankType}
-            defaultValue={RankTypeEnum.按完成度}
+            defaultValue={RankEnum.按完成度}
             buttonStyle="solid"
             onChange={(e) => {
-              setPageNo(1);
+              setpageNo(1);
               setRankType(e.target.value);
             }}
           >
@@ -76,7 +96,7 @@ const Rank = (props: Props) => {
       </div>
 
       <div className={styles.list}>
-        {list.map((item) => {
+        {list.map((item:any) => {
           const { randIndex, percent, label, value } = item;
           return (
             <div className={styles.item} key={randIndex}>
@@ -96,7 +116,8 @@ const Rank = (props: Props) => {
           total={total}
           current={pageNo}
           onChange={(page) => {
-            setPageNo(page);
+            setpageNo(page);
+            run({ p: page });
           }}
           showSizeChanger={false}
         />

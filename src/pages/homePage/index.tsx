@@ -1,46 +1,84 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect,  useRef, useState } from 'react';
 import { Select, Radio } from 'poizon-design';
-// import { useRequest, useUpdateEffect } from 'ahooks';
+import {  useUpdateEffect } from 'ahooks';
 import ProTable, { ActionType } from '@poizon-design/pro-table';
-import { history } from '@umijs/max';
-import { PageModeEnum, tagList, TypeEnum, typeList, allCategory } from '@/pages/homePage/interface';
+import {  TableMultiItem, tagList, typeList} from '@/pages/homePage/interface';
+import './service';
+
 import { deleteEmptyParam } from '@/utils/common';
-import { fixedColums,signleCategoryColumns } from './useColumns';
+import {multicolumns,singlecolumns} from './useColumns';
 import GradientRingChart from './components/chart';
 import Rank from './components/rank';
 import styles from './index.less';
-import { SortOrder } from 'poizon-design/lib/table/interface';
+import { fetchAllOverview, fetchSingleOverview, fetchTableAll, fetchTableSingle } from './service';
+import { fetchTitle } from '../leadManagement/style/service';
 
-// interface Props {
-//   pageMode: string;
-//   categoryId: string | null;
-//   setCategoryId: (categoryId: string | null) => void;
-//   categoryOptionList: [];
-//   queryMode: string;
-// }
 
-const HomePage: React.FC= (props) => {
-//   const { pageMode, categoryId, setCategoryId, categoryOptionList, queryMode } = props;
-   const pageMode='show'
-   const queryMode=PageModeEnum.单类目模式
-   const [categoryId,setCategoryId]=useState('ALL')
-   const categoryOptionList: any[] | undefined=[]
+const HomePage: React.FC = () => {
  
+  const [overviewDataRes, setOverviewDataRes] = useState({nums:[12,23,45,55,66],date:'2024/2/3'});
+  const [query, setquery] = useState('category');
+  const [categoryId,setCategoryId]=useState('all')
+  const [categoryOptionList,setOptions]=useState([])
+  const [page,setPage]=useState('multi')
+  const [queryMode,setqueryMode]=useState('people')
 
-  // 控制按类目和按人员的切换
-  const [queryType, setQueryType] = useState(TypeEnum.按类目);
   const actionRef = useRef<ActionType>();
   
-//   const { columns } = useColumns({ pageMode, queryType });
+  let columns= (page === 'single' || query === 'people')? singlecolumns:multicolumns
+  console.log(page,query,'columns',columns)
 
-  const overviewData =  '2048/1/1';
+ 
 
-//   useUpdateEffect(() => {
-//     actionRef.current.reloadAndRest();
-//   }, [pageMode, categoryId, queryType]);
+  // 总览数据
+  const getOverviewData = (page?: string,query?: string ) => {
+    if (page === 'single' || query === 'people') {
+         const data= fetchSingleOverview();
+          return data
+    }else{
+         const data= fetchAllOverview();
+    
+         return data
+    }
+  
+  };
+   // 表格数据
+   const tableList = (params={}) => {
+    if (page === 'single' || query === 'people') {
+      return fetchTableSingle(params);
+    }
+    return fetchTableAll(params);
+  }
 
 
-  const hanlerSort = (sort: Record<string, SortOrder>) => {
+  useEffect(  ()=>{
+    const fetchOverviewData = async () => {
+      const data = await getOverviewData();
+      setOverviewDataRes(data);
+    };
+    const fetchOrderList=async()=>{
+      const data=await fetchTitle()
+      const options=data.map((item:any)=>{
+        return {
+         label: item.name,
+         value:item.name
+        }
+      })
+      setOptions(options)
+      }
+    fetchOrderList()
+    fetchOverviewData();
+
+  }, []); // 空数组表示只在组件挂载时请求一次数据
+
+
+  useUpdateEffect(() => {
+    actionRef.current.reloadAndRest();
+  }, []);
+
+ 
+
+  const hanlerSort = (sort:any) => {
     if (Object.keys(sort).length === 0) {
       return {};
     }
@@ -56,20 +94,20 @@ const HomePage: React.FC= (props) => {
         <div className={styles.header}>
           <div className={styles.title}>商品待办概览</div>
           <Select
-            disabled={queryType !== TypeEnum.按类目}
+            disabled={query !== 'category'}
             value={categoryId}
             options={categoryOptionList}
-            style={{ width: 200, marginRight: 24 }}
+            style={{ width: '200px',marginRight:'10px' }}
             onChange={setCategoryId}
           ></Select>
           {/* 选择非全部类目的时候不展示切换tab */}
-          {queryMode !== PageModeEnum.单类目模式 && categoryId === allCategory && (
+          {queryMode !== 'single' && categoryId === 'all' && (
             <Radio.Group
-              value={queryType}
-              defaultValue={TypeEnum.按类目}
+              value={query}
+              defaultValue={'category'}
               buttonStyle="solid"
               onChange={(e) => {
-                setQueryType(e.target.value);
+                setquery(e.target.value);
               }}
             >
               {typeList.map((item) => {
@@ -81,23 +119,21 @@ const HomePage: React.FC= (props) => {
               })}
             </Radio.Group>
           )}
-          {overviewData && (
-            <div className={styles.updateTime}>更新于{overviewData}</div>
+          {overviewDataRes && (
+            <div className={styles.updateTime}>更新于{overviewDataRes.date}</div>
           )}
         </div>
         {/* 标签 */}
         <div className={styles.numTab}>
-          {tagList.map((item) => {
+          {tagList.map((item,index) => {
             return (
               <div
                 className={styles.tag}
                 key={item.key}
-                onClick={() => {
-                  history.push(item.url);
-                }}
+               
               >
                 <div className={styles.tagTitle}>{item.label}</div>
-                <div className={styles.tagNum}>{overviewData[item.key]}</div>
+                <div className={styles.tagNum}>{overviewDataRes.nums[index]}</div>
               </div>
             );
           })}
@@ -105,17 +141,34 @@ const HomePage: React.FC= (props) => {
         <div className={styles.table}>
           <div className={styles.title}>商品待办排行</div>
           <ProTable
-            columns={fixedColums}
+            columns={columns}
             actionRef={actionRef}
             options={false}
+            request={async (params = {}, sort) => {
+              const { current, pageSize } = params;
+              const orderingRule = hanlerSort(sort);
+              const reqParmas = {
+                categoryId: categoryId === 'all' ? null : categoryId,
+                page: current,
+                pageSize,
+                orderingRule,
+              };
+              console.log('categoryID',categoryId)
+              deleteEmptyParam(reqParmas);
+           
+              const {datas={}} =await tableList(reqParmas)
+           
+              return Promise.resolve({
+                data:datas,
+                success:true
+              })
+
+            }}
             scroll={{ x: 'max-content' }}
-            key={queryType + categoryId}
+            key={query + categoryId}
             rowKey="rankIndex"
             pagination={{
               pageSize: 10,
-              showSizeChanger: false,
-              hideOnSinglePage: true,
-              showTotal: undefined,
               size: 'default',
             }}
             search={false}
@@ -124,9 +177,9 @@ const HomePage: React.FC= (props) => {
         </div>
       </div>
       <div className={styles.right}>
-        <GradientRingChart pageMode={pageMode} categoryId={categoryId} queryType={queryType} />
-        <Rank pageMode={pageMode} categoryId={categoryId} queryType={queryType} />
-      </div> 
+        <GradientRingChart page={page} categoryId={categoryId} query={query} />
+        <Rank page={page} categoryId={categoryId} query={query} />
+      </div>
     </div>
   );
 };

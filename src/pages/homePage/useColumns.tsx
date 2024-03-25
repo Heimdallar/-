@@ -1,29 +1,25 @@
 import { useMemo } from 'react';
-import { Image } from 'poizon-design';
 import classNames from 'classnames';
-import { PageModeEnum, TypeEnum } from '@/pages/homePage/interface';
 import styles from './index.less';
-import { columns } from '../leadManagement/publicSea/column';
 
+interface Props {
+  page: string;
+  query: string;
+}
 
-const RenderIcon = ({ rankIndex }: { rankIndex: number }) => {
-  const urlList = [
-    'https://cdn.poizon.com/node-common/9c080d3a-8666-dcf3-6f42-62445855afe1-46-40.png',
-    'https://cdn.poizon.com/node-common/fe4aaf2a-ec72-e945-8564-c2ebd742d564-46-40.png',
-    'https://cdn.poizon.com/node-common/5f4b7c10-b3d7-6802-b5b5-a4685f1fc975-69-60.png',
-  ];
-  const url = urlList[rankIndex - 1];
+const RenderIcon = (rankIndex:any) => {
 
   return (
     <div className={classNames(styles.rank)}>
-      {url ? <Image width={23} height={20} src={url} preview={false} /> : rankIndex}
+        {rankIndex}
     </div>
   );
 };
 
+const useColumns = (props: Props) => {
+  const { page, query } = props;
 
-
-  export  const signleCategoryColumns = [
+    const signleColumns = [
       {
         title: '姓名',
         dataIndex: 'operatorName',
@@ -32,7 +28,7 @@ const RenderIcon = ({ rankIndex }: { rankIndex: number }) => {
       },
     ];
 
-   export const multiCategoryColumns = [
+    const multiColumns = [
       {
         title: '类目',
         dataIndex: 'categoryName',
@@ -42,86 +38,218 @@ const RenderIcon = ({ rankIndex }: { rankIndex: number }) => {
       {
         title: '待认领',
         dataIndex: 'waitClaimAmount',
-        sorter: true,
+        // sorter: true,
         width: 100,
-        defaultSortOrder:''
-        //   pageMode === PageModeEnum.单类目模式 || queryType === TypeEnum.按人员 ? '' : 'descend',
+        // defaultSortOrder:
+        //   page === 'single' || query === 'people'? '' : 'descend',
       },
       {
         title: '待认领(已超时)',
         width: 150,
         dataIndex: 'waitClaimTimeoutAmount',
-        sorter: true,
+        // sorter: true,
       },
     ];
 
-   export const fixedColums = [
+    const Tcolums = [
       {
         title: '排名',
-        dataIndex: 'index',
-        render: (index: number) => {
-          return <RenderIcon rankIndex={index} />;
-
+        dataIndex: 'rankIndex',
+        render: (rankIndex: number) => {
+          return <RenderIcon rankIndex={rankIndex} />;
         },
         hideInSearch: true,
         width: 100,
         fixed: 'left',
       },
-      // ...[
-        // pageMode === PageModeEnum.单类目模式 || queryType === TypeEnum.按人员
-        //   ? signleCategoryColumns
-        //   : multiCategoryColumns,
-        // signleCategoryColumns
-      // ].flat(Infinity),
-      {
-        ...[signleCategoryColumns]
-      },
+      ...[
+        page === 'single' || query === 'people'
+          ? signleColumns
+          : multiColumns,
+      ].flat(Infinity),
+    
+
       {
         title: '待首次沟通',
         dataIndex: 'waitFirstCommunicateAmount',
-        sorter: true,
+        // sorter: true,
         width: 150,
-        // defaultSortOrder:'descend'
-        //   pageMode === PageModeEnum.单类目模式 || queryType === TypeEnum.按人员 ? 'descend' : '',
+        // defaultSortOrder:
+        //   page === 'single' || query === 'people' ? 'descend' : '',
       },
       {
         title: '待首次沟通(已超时)',
         dataIndex: 'waitFirstCommunicateTimeoutAmount',
-        sorter: true,
+        // sorter: true,
         width: 170,
       },
       {
         title: '待反馈洽谈结果',
         dataIndex: 'waitCommunicatResultAmount',
-        sorter: true,
+        // sorter: true,
         width: 150,
       },
       {
         title: '待反馈洽谈结果(已超时)',
         dataIndex: 'waitCommunicatResultTimeoutAmount',
-        sorter: true,
+        // sorter: true,
         width: 190,
       },
       {
         title: '待提交入驻',
         dataIndex: 'waitEntryAmount',
-        sorter: true,
+        // sorter: true,
         width: 150,
       },
       {
         title: '待提交入驻(已超时)',
         dataIndex: 'waitEntryTimeoutAmount',
-        sorter: true,
+        // sorter: true,
         width: 170,
       },
       {
         title: '待出价',
         dataIndex: 'waitBiddingAmount',
-        sorter: true,
+        // sorter: true,
         width: 80,
       },
     ];
+    return Tcolums;
   
+};
 
 
+const multicolumns=[
+  
+    {
+      title: '排名',
+      dataIndex: 'rankIndex',
+      hideInSearch: true,
+      width: 100,
+      fixed: 'left',
+    },
+    {
+      title: '类目',
+      dataIndex: 'categoryName',
+      width: 100,
+      fixed: 'left',
+      valueType:'text'
+    },
+    {
+      title: '待认领',
+      dataIndex: 'waitClaimAmount',
+      sorter: true,
+      width: 100,
+      // defaultSortOrder:
+      //   page === 'single' || query === 'people'? '' : 'descend',
+    },
+    {
+      title: '待认领(已超时)',
+      width: 150,
+      dataIndex: 'waitClaimTimeoutAmount',
+      sorter: true,
+    },
+    {
+      title: '待首次沟通',
+      dataIndex: 'waitFirstCommunicateAmount',
+      sorter: true,
+      width: 150,
+    },
+    {
+      title: '待首次沟通(已超时)',
+      dataIndex: 'waitFirstCommunicateTimeoutAmount',
+      sorter: true,
+      width: 170,
+    },
+    {
+      title: '待反馈洽谈结果',
+      dataIndex: 'waitCommunicatResultAmount',
+      sorter: true,
+      width: 150,
+    },
+    {
+      title: '待反馈洽谈结果(已超时)',
+      dataIndex: 'waitCommunicatResultTimeoutAmount',
+      sorter: true,
+      width: 190,
+    },
+    {
+      title: '待提交入驻',
+      dataIndex: 'waitEntryAmount',
+      sorter: true,
+      width: 150,
+    },
+    {
+      title: '待提交入驻(已超时)',
+      dataIndex: 'waitEntryTimeoutAmount',
+      sorter: true,
+      width: 170,
+    },
+    {
+      title: '待出价',
+      dataIndex: 'waitBiddingAmount',
+      sorter: true,
+      width: 80,
+    },
+]
+const singlecolumns=[
+  {
+    title: '排名',
+    dataIndex: 'rankIndex',
+    hideInSearch: true,
+    width: 100,
+    fixed: 'left',
+  },
+  {
+    title: '姓名',
+    dataIndex: 'operatorName',
+    width: 100,
+    fixed: 'left',
+  },
+  {
+    title: '待首次沟通',
+    dataIndex: 'waitFirstCommunicateAmount',
+    sorter: true,
+    width: 150,
+    // defaultSortOrder:
+    //   page === 'single' || query === 'people' ? 'descend' : '',
+  },
+  {
+    title: '待首次沟通(已超时)',
+    dataIndex: 'waitFirstCommunicateTimeoutAmount',
+    sorter: true,
+    width: 170,
+  },
+  {
+    title: '待反馈洽谈结果',
+    dataIndex: 'waitCommunicatResultAmount',
+    sorter: true,
+    width: 150,
+  },
+  {
+    title: '待反馈洽谈结果(已超时)',
+    dataIndex: 'waitCommunicatResultTimeoutAmount',
+    sorter: true,
+    width: 190,
+  },
+  {
+    title: '待提交入驻',
+    dataIndex: 'waitEntryAmount',
+    sorter: true,
+    width: 150,
+  },
+  {
+    title: '待提交入驻(已超时)',
+    dataIndex: 'waitEntryTimeoutAmount',
+    sorter: true,
+    width: 170,
+  },
+  {
+    title: '待出价',
+    dataIndex: 'waitBiddingAmount',
+    sorter: true,
+    width: 80,
+  },
+]
 
+export {useColumns,multicolumns,singlecolumns};
