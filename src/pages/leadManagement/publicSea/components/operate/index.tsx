@@ -4,7 +4,6 @@ import BatchModal from '../batchModal';
 import { OperatesEnum } from '../../interface';
 import { Space } from 'poizon-design';
 import ProgressFeedbackModal from '../progressFeedbackModal';
-// import ProgressFeedbackModal from '../progressFeedbackModal';
 interface InProps {
   record: any;
   invokeUpdateDetail?: (leadsId: number) => void;

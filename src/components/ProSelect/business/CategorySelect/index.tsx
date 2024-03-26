@@ -19,6 +19,11 @@ const CategorySelect: React.FC<{
   useEffect(() => {
       const fetchOrderList=async()=>{
       const data=await fetchTitle()
+      if(!Array.isArray(data)) {
+      
+        setOptions([])
+      }
+     else{
       const options=data.map((item:any)=>{
         return {
          label: item.name,
@@ -26,6 +31,7 @@ const CategorySelect: React.FC<{
         }
       })
       setOptions(options)
+     }
       }
 
       fetchOrderList()

@@ -44,7 +44,7 @@ export const columns:ProColumns[]=
         return (
           <Space size={1}>
             {record.timeoutDesc && (
-              <Tag color={timeoutColor[record.timeout as '1' | '2']}>
+              <Tag color={timeoutColor[record.timeout as '1'|'2'|'3']}>
                 {record.timeoutDesc}
               </Tag>
             )}{' '}
@@ -89,9 +89,6 @@ export const columns:ProColumns[]=
         options: statusOptions,
       },
       hideInTable: true,
-      render(_, record) {
-        return <StatusDisplay record={record} />;
-      },
 
     },
     {
@@ -402,8 +399,8 @@ export const columns:ProColumns[]=
       title: '状态',
       dataIndex: 'status',
       key: 'statusList',
-      render(_: any, record: any) {
-        return <span>{record.status}</span>;
+      render(_, record) {
+        return <StatusDisplay record={record} />;
       },
       hideInSearch: true,
     },

@@ -93,14 +93,6 @@ export default ({
     return { ...params, internetSaleInfos: param };
   };
 
-  // const onFinishFailed = (errorInfo: { errorFields: { name: any; }[]; }) => {
-  //   // 获取第一个错误的字段名
-  //   const firstErrorField = errorInfo?.errorFields?.[0]?.name;
-  //   formRef.current.scrollToField(firstErrorField, {
-  //     behavior: 'smooth',
-  //     block: 'center',
-  //   });
-  // };
 
   const submit = async (props:any) => {
     await formRef?.current

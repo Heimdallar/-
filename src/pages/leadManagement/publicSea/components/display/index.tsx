@@ -5,13 +5,18 @@ import { Popover, Space, Tag, Typography } from 'poizon-design';
 interface InProps {
   record: IListItem;
 }
+interface Iobj{
+  label:string,
+  value:number
+}
 export function StatusDisplay({ record }: InProps) {
 
-  const statusObj = statusOptions.find((item) => item.value === record.status) || {
+  const statusObj:Iobj = statusOptions.find((item) => item.value === record.status) || {
     label: '',
     value: 0,
   };
-  const color = statusColor[statusObj.value as 9 | 1 | 2];
+// console.log('OBJ',statusObj)
+  const color = statusColor[statusObj.value];
   return statusObj.label ? <Tag color={color}>{statusObj.label}</Tag> : '-';
 }
 

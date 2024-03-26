@@ -50,17 +50,7 @@ export interface IListItem {
     {label: 'PC', value: 'PC'},
   ]
   
-  export const statusColor = {
-    9: 'red',
-    1: 'volcano',
-    2: 'orange',
-    10: 'magenta',
-    11: '',
-    13: 'gold',
-    14: 'blue',
-    15: 'green',
-    16: 'cyan',
-  };
+
   
   export enum QualificationType {
     个卖 = 13,
@@ -199,17 +189,7 @@ export interface IListItem {
     }
   ]
  
-export const statusOptions = [
-  { label: '入驻意愿初筛', value: 9 },
-  { label: '待招商认领', value: 1 },
-  { label: '招商洽谈中', value: 2 },
-  { label: '洽谈失败', value: 10 },
-  { label: '无效线索', value: 11 },
-  { label: '待商家提交申请', value: 13 },
-  { label: '商家申请审核中', value: 14 },
-  { label: '资质已开通', value: 15 },
-  { label: '已完成首次出价', value: 16 },
-];
+
 
 /* 品牌类别 */
 export const brandTypeOptions = [
@@ -223,29 +203,51 @@ export const brandTypeOptions = [
 export const sourceOptions = [
   { label: '雷达系统', value: 0 },
   // ...createSourceOptions,
-  { label: '类目招商', value: 9 },
-  { label: '招商活动', value: 10 },
-  { label: '招商网站', value: 11 },
-  { label: '外包招商', value: 12 },
-  { label: '服务商', value: 13 },
+  { label: '类目招商', value: 1 },
+  { label: '招商活动', value: 2 },
+  { label: '招商网站', value: 3 },
+  { label: '外包招商', value: 4 },
+  { label: '服务商', value: 5 },
 ];
 export const clueSourceOptions = [
   { label: '雷达系统', value: 0, disabled: true },
   // ...createSourceOptions,
-  { label: '商家申请', value: 8, disabled: true },
-  { label: '招商活动', value: 10, disabled: true },
-  { label: '招商网站', value: 11, disabled: true },
+  { label: '商家申请', value: 6, disabled: true },
+  { label: '招商活动', value: 2, disabled: true },
+  { label: '招商网站', value: 3, disabled: true },
   { label: '运营招商', value: 9 },
 ];
 
 export const statusEnum = {
-  0: { text: '待完善' },
-  1: { text: '待认领' },
-  2: { text: '已认领' },
-  5: { text: '待中台初审' },
-  6: { text: '中台初审不通过' },
-  3: { text: '待类目审核' },
-  4: { text: '类目审核不通过' },
+  0:  '待完善',
+  1:  '待认领' ,
+  2: '已认领' ,
+  5:  '待中台初审' ,
+  6:  '中台初审不通过' ,
+  3:  '待类目审核' ,
+  4:  '类目审核不通过' ,
+};
+export const statusOptions = [
+  { label: '入驻意愿初筛', value: 0 },
+  { label: '待招商认领', value: 1 },
+  { label: '招商洽谈中', value: 2 },
+  { label: '洽谈失败', value: 3 },
+  { label: '无效线索', value: 4 },
+  { label: '待商家提交申请', value: 5 },
+  { label: '商家申请审核中', value: 6 },
+  { label: '资质已开通', value: 7 },
+  { label: '已完成首次出价', value: 8 },
+];
+export const statusColor = {
+  0: 'red',
+  1: 'volcano',
+  2: 'orange',
+  3: 'magenta',
+  4: '',
+  5: 'gold',
+  6: 'blue',
+  7: 'green',
+  8: 'cyan',
 };
 
 export const defaultOrder = {

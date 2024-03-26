@@ -85,12 +85,13 @@ export default function ClueAllocation({
             label="优先级"
           ></ProFormSelect>
           <ProForm.Item
-            rules={[{ required: true, message: '请选择跟进人' }]}
+            // rules={[{ required: true, message: '请选择跟进人' }]}
             name="bindBusinessDeveloper"
             label="跟进人"
           >
             <UserSelect
-              placeholder="请输入跟进人名字(拼音)搜索"
+              disabled
+              placeholder="请输入跟进人名字搜索"
               labelInValue
               showSearch
               allowClear

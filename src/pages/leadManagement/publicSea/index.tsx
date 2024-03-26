@@ -2,9 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import ProTable, { ActionType } from '@poizon-design/pro-table';
 import { Button, Space } from 'poizon-design';
 import { ProFormInstance } from '@poizon-design/pro-form';
-// import QuickOptions from '../../../components/quickOptions';
 import { pagination } from '@/config';
-// import fetchClueDetailService from '@/services/publicSea/detail';
 import { fetchClueDetailService, getPublicSeaClueList } from './service';
 import { IListItem } from './interface';
 import { columns } from './column';
@@ -53,13 +51,6 @@ const ClueManagement: React.FC = () => {
   };
 
 
-  // const isSetSessionStorage = () => {
-  //   if (!Object.keys(query).length) return;
-  //   query.statusList = query.statusList?.split(',')?.map((item) => Number(item));
-  //   sessionStorage.setItem('searchParams', JSON.stringify(query || {}));
-  // };
-  // isSetSessionStorage();
-
   const queryParams = (key: string) => {
     return query?.[key] || JSON.parse(sessionStorage.getItem('searchParams') || '{}')?.[key];
   };
@@ -77,16 +68,7 @@ const ClueManagement: React.FC = () => {
 
   return (
     <div >
-      {/* <QuickOptions
-        ref={quickOptionsRef}
-        formRef={formRef}
-        setPersonalInfoType={(e) => {
-          setPersonalInfoType(e);
-          formRef.current?.setFieldsValue({
-            personalInfoType: e,
-          });
-        }}
-      /> */}
+
       <ProTable<IListItem>
         columns={columns}
         tableAlertRender={false}
@@ -98,7 +80,6 @@ const ClueManagement: React.FC = () => {
           ignoreRules: false,
           onValuesChange(e) {
             setPersonalInfoType(e?.personalInfoType);
-            // quickOptionsRef.current?.setActive(e?.personalInfoType);
           },
         }}
         onReset={() => {
@@ -107,7 +88,6 @@ const ClueManagement: React.FC = () => {
             personalInfoType: undefined,
           });
           setPersonalInfoType(undefined);
-          // quickOptionsRef.current?.setActive('');
         }}
         options={false}
         request={async (params = {}, sort: { [key: string]: string }) => {
