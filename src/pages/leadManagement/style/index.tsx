@@ -250,7 +250,7 @@ export default () => {
                 rules={[{ required: true, message: '请选择一级类目名称' }]}
               >
                 <Select>
-          {options?.map(option => (
+          {Array.isArray(options)  && options?.map(option => (
             <Option key={option.id} value={option.name}>{option.name}</Option>
           ))}
         </Select>
