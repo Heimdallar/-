@@ -11,7 +11,7 @@ import {
   tabsSettingOpt,
   FollowProgressOptions,
 } from './interface';
-import { queryLabelList, getObtainChannels } from './service';
+import { queryLabelList } from './service';
 import { StatusDisplay, LabelDisplay } from "./components/display";
 import Operate from "./components/operate";
 export const columns:ProColumns[]=
@@ -53,7 +53,7 @@ export const columns:ProColumns[]=
         );
 
       },
-      // hideInTable: true,
+      
     },
     {
       title: '品牌名称',
@@ -62,6 +62,7 @@ export const columns:ProColumns[]=
       fieldProps: {
         placeholder: '多个品牌名称使用逗号分隔,最多可输入20个',
       },
+      hideInTable: true,
       // search: {
       //   transform: (value) => {
       //     const nameList = transBrandName(value);
@@ -175,16 +176,6 @@ export const columns:ProColumns[]=
       hideInTable: true,
     },
     {
-      title: '洽谈失败原因',
-      valueType: 'select',
-      dataIndex: 'feedbackTalkFail',
-      hideInTable: true,
-      fieldProps: {
-        placeholder: '请选择',
-        options:failedOptions
-      },
-    },
-    {
       title: '标签',
       dataIndex: 'labelNames',
       key: 'labelIds',
@@ -248,7 +239,7 @@ export const columns:ProColumns[]=
       fieldProps: {
         controls: false,
         showCount: true,
-        maxLength: 19,
+        maxLength: 20,
       },
       formItemProps: {
         rules: [
@@ -334,19 +325,19 @@ export const columns:ProColumns[]=
       },
       hideInTable: true,
     },
-    {
-      title: '跟进进度',
-      dataIndex: 'personalInfoType',
-      key: 'personalInfoType',
-      valueType: 'select',
-      fieldProps: {
-        placeholder: '全部',
-        options: FollowProgressOptions,
-        defaultValue: '',
-      },
-      hideInTable: true,
-      hideInSearch: true,
-    },
+    // {
+    //   title: '跟进进度',
+    //   dataIndex: 'personalInfoType',
+    //   key: 'personalInfoType',
+    //   valueType: 'select',
+    //   fieldProps: {
+    //     placeholder: '全部',
+    //     options: FollowProgressOptions,
+    //     defaultValue: '',
+    //   },
+    //   hideInTable: true,
+    //   hideInSearch: true,
+    // },
     {
       title: '更新时间',
       dataIndex: 'modifyTime',
@@ -368,7 +359,7 @@ export const columns:ProColumns[]=
       },
     },
   {
-      title: '招商ID',
+      title: '线索ID',
       dataIndex: 'leadsId',
       key: 'leadsId',
       fixed: 'left',

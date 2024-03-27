@@ -17,7 +17,35 @@ import ClueAllocation from './components/clueAllocation';
 import ClueTransfer from './components/clueTransfer';
 import ExportTemplate from './components/exportTemplate';
 import DownloadTemplate from './components/downloadTemplate';
-
+import _ from 'lodash';
+export interface Data{
+   basicdata:{
+    leadsId?: number,
+    brandInfo?: string,
+    mainCategoryId?: string,
+    brandType?: number,
+    enterpriseName?:string,
+    targetId?:number,
+    labelNames?:string[]
+}
+ outdata:{
+  storeChannel?:string,
+  storeName?:string,
+  storeUrl?:string,
+  recentThirtyTurnover?:number,
+  fansNum?:number
+}
+ contactdata:{
+  contactName?:string,
+  contactMobileNumber?:number,
+  contactWechat?:number,
+}
+ enterdata:{
+  entryWilling?:string,
+  enterpriseName ?:string,
+  leadsIds?:number
+}
+}
 const ClueManagement: React.FC = () => {
   const [clueShow, setClueShow] = useState<boolean>(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
@@ -26,7 +54,7 @@ const ClueManagement: React.FC = () => {
   const actionRef = useRef<ActionType>();
  const formRef = useRef<ProFormInstance>();
   const [detailVisible, setDetailVisible] = useState<boolean>(false);
-  const [formState, setFormState] = useState({});
+  const [formState, setFormState] = useState();
   const [reqParams, setReqParams] = useState({});
   const query = useQuery();
   const quickOptionsRef = useRef<{
@@ -38,11 +66,12 @@ const ClueManagement: React.FC = () => {
   const [personalInfoType, setPersonalInfoType] = useState<number>();
 
   const invokeUpdateDetail = async (leadsId: number) => {
-    const resp = await fetchClueDetailService({ leadsId,  });
+    const resp = await fetchClueDetailService({ leadsId});
     setFormState({
       ...resp,
     });
   };
+
 
   const refreshList = () => {
     actionRef.current?.reload();
@@ -99,7 +128,6 @@ const ClueManagement: React.FC = () => {
             page: current,
             invitationActivityId: invitationActivityId ? Number(invitationActivityId) : null,
             feedbackTalkFail: feedbackTalkFail?.[feedbackTalkFail.length - 1],
-            fromPage: 0,
             sortRule: sortHandleFn(sort),
           };
           setReqParams(requestParams);
@@ -186,11 +214,7 @@ const ClueManagement: React.FC = () => {
           contactMobileNumber: true,
           annualSales: false,
         }}
-        unchangeableValue={
-          {
-            ['eeee']:1
-          }
-        }
+       
       />
       <DetailDrawer
         detailVisible={detailVisible}

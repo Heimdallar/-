@@ -40,7 +40,7 @@ export  function LabelDisplay({ record }: InProps) {
       {record.labelNames && record.labelNames.length > 2 && (
         <div onClick={(e) => e.stopPropagation()}>
           <Popover
-            trigger="click"
+            trigger="hover"
             content={() =>
               record.labelNames &&
               record.labelNames.length > 2 &&
@@ -51,7 +51,7 @@ export  function LabelDisplay({ record }: InProps) {
               ))
             }
           >
-            <Link>查看全部</Link>
+            <Link>全部</Link>
           </Popover>
         </div>
       )}
