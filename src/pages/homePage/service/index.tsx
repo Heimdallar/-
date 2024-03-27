@@ -60,11 +60,26 @@ export const fetchTableAll=async(params={})=>{
  }
  export const fetchAllOverview=async(params={})=>{
  try{
-        // const list=await request('',params,'GET')
+        const list1=await request('/youthcamp-mer-customer/g4/youthcamp-mer-customer/merchant/customer/leads/statistic/byAllCategory/getOverview',params,'POST')
+     
+        const list=list1[0]
+       
+        //    console.log('list',list)
         return {
-            nums:[1,2,3,4,5],
-            date:'2022/1/1',
+           ...list
         }
+        // "bizDate": "2024-03-25 17:00:00",
+        //             "waitClaimTotalAmount": 42579,
+        //             "waitFirstCommunicateTotalAmount": 404,
+        //             "waitCommunicatResultTotalAmount": 388,
+        //             "waitEntryTotalAmount": 72,
+        //             "waitBiddingTotalAmount": 98
+        // return {
+        //     nums:[1,2,3,4,5],
+        //     date:'2022/1/1',
+        // }
+
+
     }
     catch(e){
         console.log('获取所有类失败',e)

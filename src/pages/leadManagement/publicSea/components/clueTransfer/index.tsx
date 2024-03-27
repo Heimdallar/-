@@ -71,7 +71,7 @@ export default function ClueTransfer({
           loading
         }}
       >
-        <ProForm formRef={formRef} labelCol={{ span: 5 }} layout="horizontal" submitter={false}>
+        {/* <ProForm formRef={formRef} labelCol={{ span: 5 }} layout="horizontal" submitter={false}>
           <ProForm.Item
             rules={[{ required: true, message: '请选择跟进人' }]}
             name="transferee"
@@ -85,7 +85,7 @@ export default function ClueTransfer({
               dynamicLoad
             />
           </ProForm.Item>
-        </ProForm>
+        </ProForm> */}
       </Modal>
     </>
   );

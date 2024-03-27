@@ -16,7 +16,7 @@ import { fetchTitle } from '../leadManagement/style/service';
 
 const HomePage: React.FC = () => {
  
-  const [overviewDataRes, setOverviewDataRes] = useState({nums:[12,23,45,55,66],date:'2024/2/3'});
+  const [overviewDataRes, setOverviewDataRes] = useState({});
   const [query, setquery] = useState('category');
   const [categoryId,setCategoryId]=useState('all')
   const [categoryOptionList,setOptions]=useState([])
@@ -54,7 +54,9 @@ const HomePage: React.FC = () => {
   useEffect(  ()=>{
     const fetchOverviewData = async () => {
       const data = await getOverviewData();
-      setOverviewDataRes(data);
+      const res={...data}
+
+      setOverviewDataRes(res);
     };
     const fetchOrderList=async()=>{
       const data=await fetchTitle()
@@ -119,24 +121,34 @@ const HomePage: React.FC = () => {
               })}
             </Radio.Group>
           )}
-          {overviewDataRes && (
-            <div className={styles.updateTime}>更新于{overviewDataRes.date}</div>
+          {overviewDataRes.bizDate && (
+            <div className={styles.updateTime}>更新于{overviewDataRes.bizDate}</div>
           )}
         </div>
         {/* 标签 */}
         <div className={styles.numTab}>
-          {tagList.map((item,index) => {
-            return (
-              <div
-                className={styles.tag}
-                key={item.key}
-               
-              >
-                <div className={styles.tagTitle}>{item.label}</div>
-                <div className={styles.tagNum}>{overviewDataRes.nums[index]}</div>
-              </div>
-            );
-          })}
+          
+            <div className={styles.tag} >
+            <div className={styles.tagTitle}>{tagList[0].label}</div>
+            <div className={styles.tagNum}>{overviewDataRes.waitClaimTotalAmount}</div>
+            </div>
+            <div className={styles.tag}>
+            <div className={styles.tagTitle}>{tagList[1].label}</div>
+            <div className={styles.tagNum}>{overviewDataRes.waitFirstCommunicateTotalAmount}</div>
+            </div>
+            <div className={styles.tag}>
+            <div className={styles.tagTitle}>{tagList[2].label}</div>
+            <div className={styles.tagNum}>{overviewDataRes.waitCommunicatResultTotalAmount}</div>
+            </div>
+            <div className={styles.tag}>
+            <div className={styles.tagTitle}>{tagList[3].label}</div>
+            <div className={styles.tagNum}>{overviewDataRes.waitEntryTotalAmount}</div>
+            </div>
+            <div className={styles.tag}>
+            <div className={styles.tagTitle}>{tagList[4].label}</div>
+            <div className={styles.tagNum}>{overviewDataRes.waitBiddingTotalAmount}</div>
+            </div>
+          
         </div>
         <div className={styles.table}>
           <div className={styles.title}>商品待办排行</div>
